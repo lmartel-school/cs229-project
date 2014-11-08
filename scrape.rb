@@ -5,14 +5,19 @@ require 'htmlentities'
 require 'httparty'
 require 'json'
 
+# Comments from the last month or so don't have scores in the unofficial api,
+# so we don't scrape them.
+# (id 8400000 was around October 2, 2014)
+LATEST_USABLE_COMMENT_ID = 8400000
 DB_FILE = 'scrape.db'
 BASE_URI = 'https://hacker-news.firebaseio.com/v0/'
-LATEST_USABLE_COMMENT_ID = 8400000
 
 DB = Sequel.sqlite DB_FILE
 FB = Firebase::Client.new BASE_URI
 
 DB.create_table? :items do
+
+    ## Data returned from the API
     Integer :id, primary_key: true
 
     TrueClass :deleted
@@ -23,14 +28,15 @@ DB.create_table? :items do
     TrueClass :dead
     Integer :parent
     
-    String :kids, text: true # JSON array of child ids
+    String :kids, text: true # JSON array of child ids, stored as string
 
     String :url
     Integer :score
     String :title
     
-    String :parts, text: true # JSON array of part ids (for polls)
+    String :parts, text: true # JSON array of part ids (for polls), stored as string
 
+    ## Data for our own bookkeeping
     TrueClass :point_scrape_attempted
 end
 
@@ -47,7 +53,7 @@ class Scraper
         response = @fb.get("item/#{@current_item_id}")
         raise "Error #{response.code}" unless response.success?
         fields = response.body
-        fields['text'] = HTMLEntities.new.decode fields['text']
+        fields['text'] = HTMLEntities.new.decode fields['text'] # De-crapify HTML
         fields['kids'] = fields['kids'].to_json if fields['kids']
         fields['parts'] = fields['parts'].to_json if fields['parts']
         fields
@@ -87,18 +93,7 @@ class CommentKarmaScraper
 end
 
 def main
-    # Newish (in the last month or so) comments don't have published karma numbers,
-    # So I disabled the commands that scrape recent comments.
     case ARGV.first
-    #when 'newest'
-        #latest = FB.get('maxitem').body
-        #scraper = BackwardScraper.new(latest, FB)
-    #when 'newer'
-        #latest_we_have = Item.max :id
-        #scraper = FowrardScraper.new(latest_we_have + 1, FB)
-    #when 'older'
-        #oldest_we_have = Item.min :id
-        #scraper = BackwardScraper.new(oldest_we_have - 1, FB)
     when 'scores'
         CommentKarmaScraper.new.scrape_missing!
         exit 0
@@ -123,11 +118,6 @@ def main
 end
 
 def usage
-    # Disabled commands:
-    # ruby scrape.rb newest   | scrape backwards from right now
-    # ruby scrape.rb newer    | scrape forwards from the newest comment in our DB
-    # ruby scrape.rb older    | scrape backwards from the oldest comment in our DB
-
     puts <<-DOC
         Usage:
 
