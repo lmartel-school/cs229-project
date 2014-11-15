@@ -14,7 +14,10 @@ public class AnalysisMain {
         BasicClassifier basic = new BasicClassifier(50);
         basic.train(data.getTrain());
 
-        ClassificationResults basicResults = new ClassificationExperiment(basic, new ClassificationOracle(), data.getTest()).run();
+        ClassificationExperiment zeroVsPositive = new ClassificationExperiment(basic, new ClassificationOracle(new BinaryThresholdLabeling(0)), data.getTest());
+        ClassificationExperiment greaterThan5 = new ClassificationExperiment(basic, new ClassificationOracle(new BinaryThresholdLabeling(5)), data.getTest());
+
+        ClassificationResults basicResults = zeroVsPositive.run();
 
         System.out.println("Running basic classifier (blindly decide based on # words in comment)");
         System.out.println("Basic classifier results: precision " + basicResults.getPrecision() + ", recall " + basicResults.getRecall());

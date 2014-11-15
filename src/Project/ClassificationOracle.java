@@ -8,6 +8,13 @@ import java.util.Map;
  * Created by leo on 11/8/14.
  */
 public class ClassificationOracle implements Oracle, ClassificationAlgorithm {
+
+    private Labeling labeling;
+
+    public ClassificationOracle(Labeling labeling){
+        this.labeling = labeling;
+    }
+
     @Override
     public void train(List<Comment> trainingData) {
         // Do nothing lol
@@ -15,8 +22,7 @@ public class ClassificationOracle implements Oracle, ClassificationAlgorithm {
 
     @Override
     public CommentClass classify(Comment comment) {
-        if(comment.getScore() > 0) return CommentClass.GOOD;
-        return CommentClass.BAD;
+        return labeling.label(comment);
     }
 
     @Override

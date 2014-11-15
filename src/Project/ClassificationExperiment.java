@@ -16,13 +16,13 @@ public class ClassificationExperiment implements Experiment {
     }
 
     public ClassificationResults run(){
-        Map<Comment, ClassificationAlgorithm.CommentClass> predictions = algorithm.classify(testData);
-        Map<Comment, ClassificationAlgorithm.CommentClass> answers = oracle.classify(testData);
+        Map<Comment, CommentClass> predictions = algorithm.classify(testData);
+        Map<Comment, CommentClass> answers = oracle.classify(testData);
 
         ClassificationResults results = new ClassificationResults();
 
         for(Comment c : testData){
-            boolean positive = predictions.get(c) == ClassificationAlgorithm.CommentClass.GOOD;
+            boolean positive = predictions.get(c) == CommentClass.GOOD;
             boolean truu = predictions.get(c) == answers.get(c);
             if(truu && positive) results.truePositives++;
             if(truu && !positive) results.trueNegatives++;
