@@ -1,0 +1,7 @@
+[TRAINING] Residual sum of squares: 0.04
+[TRAINING] Variance score: 1.00
+
+[TESTING] Residual sum of squares: 1630.58
+[TESTING] Variance score: -95.85
+
+

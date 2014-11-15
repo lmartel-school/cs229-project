@@ -17,7 +17,7 @@ public class NaiveBayes implements ClassificationAlgorithm {
     public void train(List<Comment> trainingData) {
         IO.writeToFile(Config.BASE_PATH + Constants.NAIVE_BAYES_TRAIN_FILENAME, trainingData);
         
-        ProcessBuilder pb = new ProcessBuilder("python", Constants.NAIVE_BAYES_TRAIN);
+        ProcessBuilder pb = new ProcessBuilder("python", Constants.NAIVE_BAYES_UNIGRAM_TRAIN);
         try {
             System.out.println("Training naive Bayes on " + trainingData.size() + " comments...");
             Process trainingProcess = pb.start();
@@ -51,7 +51,7 @@ public class NaiveBayes implements ClassificationAlgorithm {
 	public Map<Comment, CommentClass> classify(List<Comment> comments) {
         IO.writeToFile(Config.BASE_PATH + Constants.NAIVE_BAYES_TEST_FILENAME, comments);
 
-        ProcessBuilder pb = new ProcessBuilder("python", Constants.NAIVE_BAYES_TEST);
+        ProcessBuilder pb = new ProcessBuilder("python", Constants.NAIVE_BAYES_UNIGRAM_TEST);
         try {
             System.out.println("Testing naive Bayes on " + comments.size() + " comments...");
             Process trainingProcess = pb.start();

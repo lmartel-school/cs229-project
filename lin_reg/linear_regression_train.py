@@ -10,7 +10,7 @@ DELIM = ","
 vectorizer = None
 
 # Note: this class assumes data has been cleaned
-with open('src/data/lin_reg/linear_regression.train.inputs', 'rb') as f:
+with open('lin_reg/linear_regression.train.inputs', 'rb') as f:
     scoresAndFeatures = f.readlines()
     partitionedScoresAndFeatures = [entry.partition(DELIM) for entry in scoresAndFeatures]
     scores = [float(partitionedEntry[0]) for partitionedEntry in partitionedScoresAndFeatures]
