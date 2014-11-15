@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IO {
-	private static String dataDirectoryPrefix = "src/data/";
 	
 	public static void writeToFile(String filenameToWriteTo, List<Comment> trainData) {
-    	String pathToWriteTo = dataDirectoryPrefix + filenameToWriteTo;
+    	String pathToWriteTo = Constants.NB_DATA_DIRECTORY + filenameToWriteTo;
     	Writer writer = null;
     	try {
     	    writer = new BufferedWriter(new OutputStreamWriter(

@@ -1,10 +1,10 @@
 package Project;
 
 import Project.Features.Feature;
-import Project.Features.Features;
-import Project.Features.RegressionFeatureVector;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
@@ -25,18 +25,9 @@ public class LinearRegression implements RegressionAlgorithm {
 
     @Override
     public Map<Comment, Double> predict(List<Comment> comments) {
-        List<RegressionFeatureVector> inputs = Features.map(this.features, comments);
-        try {
-            System.out.println("Writing linear regression input file...");
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(Config.BASE_PATH + Constants.LINEAR_REGRESSION_TEST_FILENAME)));
-            for(RegressionFeatureVector input : inputs){
-                String values = input.getX().toString();
-                writer.write(input.getY() + ", " + values.substring(1, values.length() - 1) + '\n');
-            }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        // Features.writeFeatureMatrix(Config.BASE_PATH + Constants.LINEAR_REGRESSION_TEST_FILENAME, this.features, comments);
+        IO.writeToFile(Constants.LINEAR_REGRESSION_TEST_FILENAME, comments);
 
         ProcessBuilder pb = new ProcessBuilder("python", Constants.LINEAR_REGRESSION_TEST);
         try {
@@ -65,18 +56,9 @@ public class LinearRegression implements RegressionAlgorithm {
 
     @Override
     public void train(List<Comment> trainingData) {
-        List<RegressionFeatureVector> inputs = Features.map(this.features, trainingData);
-        try {
-            System.out.println("Writing linear regression input file...");
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(Config.BASE_PATH + Constants.LINEAR_REGRESSION_TRAIN_FILENAME)));
-            for(RegressionFeatureVector input : inputs){
-                String values = input.getX().toString();
-                writer.write(input.getY() + ", " + values.substring(1, values.length() - 1) + '\n');
-            }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        // Features.writeFeatureMatrix(Config.BASE_PATH + Constants.LINEAR_REGRESSION_TRAIN_FILENAME, this.features, trainingData);
+        IO.writeToFile(Constants.LINEAR_REGRESSION_TRAIN_FILENAME, trainingData);
 
         ProcessBuilder pb = new ProcessBuilder("python", Constants.LINEAR_REGRESSION_TRAIN);
         try {
