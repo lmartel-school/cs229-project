@@ -17,5 +17,5 @@ public class Comment extends Item {
     public void setParent(Item parent) {
         this.parent = parent;
     }
-
+    
 }
