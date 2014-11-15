@@ -109,7 +109,7 @@ public class Item {
         Statement statement = conn.createStatement();
         List<Item> items = Item.fromResults(statement.executeQuery("SELECT * FROM items WHERE score IS NOT NULL"));
         List<Comment> comments = new ArrayList<Comment>();
-        for(Item i : items){
+        for (Item i : items) {
             if (i instanceof Comment) comments.add((Comment) i);
         }
         return comments;
