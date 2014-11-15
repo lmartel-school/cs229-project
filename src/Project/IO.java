@@ -6,8 +6,7 @@ import java.util.List;
 public class IO {
 	private static String dataDirectoryPrefix = "src/data/";
 	
-	public static void writeToFile(String filenameToWriteTo, List<Comment> trainData) {
-    	String pathToWriteTo = dataDirectoryPrefix + filenameToWriteTo;
+	public static void writeToFile(String pathToWriteTo, List<Comment> trainData) {
     	Writer writer = null;
     	try {
     	    writer = new BufferedWriter(new OutputStreamWriter(
