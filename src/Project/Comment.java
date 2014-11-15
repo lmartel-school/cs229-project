@@ -5,8 +5,8 @@ public class Comment extends Item {
     protected Item parent;
     protected int parentId;
 
-    public Comment(int id, String by, long time, String text, int score, int parentId) {
-        super(id, by, time, text, score);
+    public Comment(int id, String by, long time, String rawText, String text, int score, int parentId) {
+        super(id, by, time, rawText, text, score);
         this.parentId = parentId;
     }
 

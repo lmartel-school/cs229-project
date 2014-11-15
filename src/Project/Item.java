@@ -15,7 +15,8 @@ public class Item {
     public static final String ID_COL = "id";
     public static final String BY_COL = "by";
     public static final String TIME_COL = "time";
-    public static final String TEXT_COL = "text";
+    public static final String TEXT_COL = "stripped_text";
+    public static final String RAW_TEXT_COL = "text";
     public static final String SCORE_COL = "score";
     public static final String PARENT_COL = "parent";
     public static final String TITLE_COL = "title";
@@ -29,13 +30,15 @@ public class Item {
     protected final int id;
     protected final String by;
     protected final long time;
+    protected final String rawText;
     protected final String text;
     protected final int score;
 
-    protected Item(int id, String by, long time, String text, int score) {
+    protected Item(int id, String by, long time, String rawText, String text, int score) {
         this.id = id;
         this.by = by;
         this.time = time;
+        this.rawText = rawText;
         this.text = text;
         this.score = score;
     }
@@ -56,6 +59,8 @@ public class Item {
         return text;
     }
 
+    public String getRawText() { return rawText; }
+
     public int getScore() {
         return score;
     }
@@ -73,6 +78,7 @@ public class Item {
                             id,
                             results.getString(BY_COL),
                             results.getLong(TIME_COL),
+                            results.getString(RAW_TEXT_COL),
                             results.getString(TEXT_COL),
                             results.getInt(SCORE_COL),
                             results.getInt(PARENT_COL)
@@ -83,6 +89,7 @@ public class Item {
                             id,
                             results.getString(BY_COL),
                             results.getLong(TIME_COL),
+                            results.getString(RAW_TEXT_COL),
                             results.getString(TEXT_COL),
                             results.getInt(SCORE_COL),
                             results.getString(TITLE_COL),
