@@ -11,8 +11,11 @@ public class DepthFeature implements Feature {
 
     @Override
     public double value(Comment comment) {
-        if((Item)comment instanceof Submission)
-            return 0;
-        return 1 + value((Comment)(comment.getParent()));
+        return trace(comment);
+    }
+
+    private int trace(Item item){
+        if(item == null || item instanceof Submission) return 0;
+        return 1 + trace(((Comment) item).getParent());
     }
 }

@@ -19,4 +19,12 @@ public class Features {
         }
         return vectors;
     }
+
+    public static List<Feature> someFeatures(){
+        List<Feature> features = new ArrayList<Feature>();
+        features.add(new InterceptFeature());
+        features.add(new DepthFeature());
+
+        return features;
+    }
 }
