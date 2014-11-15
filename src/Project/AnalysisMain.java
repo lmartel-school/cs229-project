@@ -10,7 +10,7 @@ public class AnalysisMain {
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + Config.DB_PATH);
         List<Comment> comments = Item.getComments(connection);
         DataSplitter data = new BasicSplitter(comments);
-        
+
         BasicClassifier basic = new BasicClassifier(50);
         basic.train(data.getTrain());
 
