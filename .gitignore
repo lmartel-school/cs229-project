@@ -1,6 +1,10 @@
 src/Project/Config.java
+
 *.idea
 *.iml
+*.project
+*.classpath
+
 out
 
 *.swp
