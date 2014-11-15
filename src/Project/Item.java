@@ -59,7 +59,9 @@ public class Item {
         return text;
     }
 
-    public String getRawText() { return rawText; }
+    public String getRawText() { 
+    	return rawText; 
+	}
 
     public int getScore() {
         return score;

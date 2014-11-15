@@ -13,7 +13,6 @@ public class LinearRegression implements RegressionAlgorithm {
     private final List<Feature> features;
 
     public LinearRegression(List<Feature> features){
-
         this.features = features;
     }
 
