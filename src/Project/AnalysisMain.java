@@ -14,6 +14,7 @@ public class AnalysisMain {
 
         BasicClassifier basic = new BasicClassifier(50);
         List<Comment> trainData = data.getTrain();
+        List<Comment> testData =  data.getTest();
         
         basic.train(data.getTrain());
 
@@ -24,7 +25,9 @@ public class AnalysisMain {
 
         System.out.println("Running basic classifier (blindly decide based on # words in comment)");
         System.out.println("Basic classifier results: precision " + basicResults.getPrecision() + ", recall " + basicResults.getRecall());
+        
         NaiveBayes nb = new NaiveBayes();
         nb.train(trainData);
+        nb.classify(testData);
     }
 }
