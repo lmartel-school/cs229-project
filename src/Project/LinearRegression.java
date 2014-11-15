@@ -40,7 +40,7 @@ public class LinearRegression implements RegressionAlgorithm {
 
         ProcessBuilder pb = new ProcessBuilder("python", Constants.LINEAR_REGRESSION_TEST);
         try {
-            System.out.println("Training linear regression on " + comments.size() + " comments...");
+            System.out.println("Testing linear regression on " + comments.size() + " comments...");
             Process trainingProcess = pb.start();
             BufferedReader stdOut = new BufferedReader(new InputStreamReader(trainingProcess.getInputStream()));
             BufferedReader stdErr = new BufferedReader(new InputStreamReader(trainingProcess.getErrorStream()));
@@ -50,10 +50,10 @@ public class LinearRegression implements RegressionAlgorithm {
             }
             line = null;
             while ((line = stdOut.readLine()) != null) {
-                System.out.println("Training: " + line);
+                System.out.println("Testing: " + line);
             }
             trainingProcess.waitFor();
-            System.out.println("Training finished with code: " + trainingProcess.exitValue());
+            System.out.println("Testing finished with code: " + trainingProcess.exitValue());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

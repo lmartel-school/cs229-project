@@ -14,7 +14,7 @@ public class AnalysisMain {
     public static void main(String argv[]) throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + Config.DB_PATH);
         List<Comment> comments = Item.getComments(connection);
-        DataSplitter data = new BasicSplitter(comments);
+        DataSplitter data = new PercentageSplitter(comments, 0.3);
 
         BasicClassifier basic = new BasicClassifier(50);
         List<Comment> trainData = data.getTrain();

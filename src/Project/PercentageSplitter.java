@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by leo on 11/15/14.
- */
 public class PercentageSplitter implements DataSplitter {
 
     private final List<Comment> train;
