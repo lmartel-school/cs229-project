@@ -19,6 +19,14 @@ def GetStopWords
     end
 end
 
+def makeSwearWords
+    list = []
+    File.open("swearWords.txt").each_line do |word|
+        list.push word.strip
+    end
+    print list
+end
+
 
 Item = DB[:items]
 
@@ -61,5 +69,7 @@ def unstop(dirtyComment)
     return wordArray.join ' '
 end
 
-GetStopWords()
-UpdateComments()
+# GetStopWords()
+# UpdateComments()
+
+makeSwearWords()

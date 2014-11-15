@@ -15,19 +15,17 @@ def getTrainingData(filename):
 		comments = [partitionedEntry[2] for partitionedEntry in partitionedScoresAndFeatures]
 		return (scores, comments)
 
-# Get the 
 # Note: this class assumes data has been cleaned
 
 vectorizer = CountVectorizer(min_df=1)
 (scores, corpus) = getTrainingData(trainDataPath)
-print "Printing the first entry of the corpus:"
-print scores[0]
-print corpus[0]
-print '\n'
+# print "Printing the first entry of the corpus:"
+# print scores[0]
+# print corpus[0]
+# print '\n'
 # print len(corpus)
 X = vectorizer.fit_transform(corpus)
 y = np.array(scores)
 clf = MultinomialNB()
 clf.fit(X, y)
-MultinomialNB(alpha=1.0, class_prior=None, fit_prior=True)
 print(clf.predict(X[2])) # predict on second example

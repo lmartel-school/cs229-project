@@ -8,7 +8,6 @@ X = None
 y = None
 DELIM = ","
 vectorizer = None
-
 with open('lin_reg/linear_regression.vectorizer', 'rb') as f:
     vectorizer = cPickle.load(f)
 
@@ -21,8 +20,8 @@ with open('src/data/lin_reg/linear_regression.test.inputs', 'rb') as f:
     X = vectorizer.transform(corpus)
     y = np.array(scores)
 
-with open('lin_reg/linear_regression.model', 'rb') as f:
-    regr = cPickle.load(f)
+with open('lin_reg/naive_bayes.model', 'rb') as f:
+    clf = cPickle.load(f)
 
     predictions = regr.predict(X)
     print predictions
@@ -33,5 +32,5 @@ with open('lin_reg/linear_regression.model', 'rb') as f:
     print("[TESTING] Residual sum of squares: %.2f"
         % np.mean((predictions - y) ** 2))
     # Explained variance score: 1 is perfect prediction
-    print('[TESTING] Variance score: %.2f' % regr.score(X, y))
+    print('[TESTING] Variance score: %.2f' % clf.score(X, y))
 
