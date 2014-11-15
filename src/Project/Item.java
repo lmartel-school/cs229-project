@@ -1,5 +1,7 @@
 package Project;
 
+import com.sun.tools.corba.se.idl.StringGen;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,10 +24,12 @@ public class Item {
     public static final String TITLE_COL = "title";
     public static final String URL_COL = "url";
     public static final String TYPE_COL = "type";
+    public static final String LINKS_COL = "links";
 
     public static final String COMMENT_TYPE = "comment";
     public static final String STORY_TYPE = "story";
     public static final String POLL_TYPE = "poll";
+
 
     protected final int id;
     protected final String by;
@@ -76,6 +80,7 @@ public class Item {
                 int id = results.getInt(ID_COL);
                 Item item;
                 if(t.equals(COMMENT_TYPE)){
+                    List<String> links = stringToArray(results.getString(LINKS_COL));
                     item = new Comment(
                             id,
                             results.getString(BY_COL),
@@ -83,7 +88,8 @@ public class Item {
                             results.getString(RAW_TEXT_COL),
                             results.getString(TEXT_COL),
                             results.getInt(SCORE_COL),
-                            results.getInt(PARENT_COL)
+                            results.getInt(PARENT_COL),
+                            links
                     );
 
                 } else if (t.equals(STORY_TYPE) || t.equals(POLL_TYPE)) {
@@ -122,6 +128,21 @@ public class Item {
             if (i instanceof Comment) comments.add((Comment) i);
         }
         return comments;
+    }
+
+    private static List<String> stringToArray(String str) {
+        List<String> array = new ArrayList<String>();
+        if(str.equals("[]")) return array;
+
+        str = str.substring(2, str.length() - 1);
+        while(!str.isEmpty()) {
+            array.add(str.substring(0, str.indexOf('"')));
+            if(str.length() - 1 > str.indexOf('"') + 3)
+                str = str.substring(str.indexOf('"') + 3, str.length());
+            else break;
+        }
+        
+        return array;
     }
 
 }
