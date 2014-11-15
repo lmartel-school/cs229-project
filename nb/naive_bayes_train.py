@@ -23,31 +23,21 @@ with open('nb/naive_bayes.train.inputs') as f:
 	X = vectorizer.fit_transform(corpus)
 	y = np.array(scores)
 
-clf = MultinomialNB()
+clf = MultinomialNB(alpha=1.0)
 clf.fit(X, y)
-
-print X
-print y
 
 # The coefficients
 # print "Coefficients: \n", regr.coef_
 # The mean square error
-squared_errors = np.subtract(clf.predict(X), y)
-print squared_errors
+predicted_y = clf.predict(X)
+errors = predicted_y.astype(int) - y.astype(int)
 print("[TRAINING] Residual sum of squares: %.2f"
-      % np.mean((clf.predict(X) - y) ** 2))
+      % np.mean((errors) ** 2))
 # Explained variance score: 1 is perfect prediction
 print('[TRAINING] Variance score: %.2f' % clf.score(X, y))
 
 with open('nb/naive_bayes.model', 'wb') as f:
     cPickle.dump(clf, f)
 
-
-
-
-
-
-
-
-
-
+with open('nb/naive_bayes.vectorizer', 'wb') as f:
+    cPickle.dump(vectorizer, f)
