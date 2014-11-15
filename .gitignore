@@ -1,5 +1,7 @@
+src/Project/Config.java
 *.idea
 *.iml
 out
 
 *.swp
+/bin
