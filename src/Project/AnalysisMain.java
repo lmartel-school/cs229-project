@@ -12,14 +12,14 @@ public class AnalysisMain {
         List<Comment> comments = Item.getComments(connection);
         DataSplitter data = new PercentageSplitter(comments, 0.3);
 
-        List<Comment> testData =  data.getTest();
+        Labeling moreUpvotes = new BinaryThresholdLabeling(1);
 
-        NaiveBayes zeroVsPositive = new NaiveBayes(new BinaryThresholdLabeling(0));
-        zeroVsPositive.train(data.getTrain());
+        NaiveBayes nb = new NaiveBayes(moreUpvotes);
+        nb.train(data.getTrain());
 
-        ClassificationResults exp1 = (new ClassificationExperiment(zeroVsPositive, new ClassificationOracle(new BinaryThresholdLabeling(0)), data.getTest())).run();
+        ClassificationResults exp1 = (new ClassificationExperiment(nb, new ClassificationOracle(moreUpvotes), data.getTest())).run();
 
-        System.out.println("[RESULTS] Naive bayes with classes (karma 0) and (karma > 0)");
+        System.out.println("[RESULTS] Naive bayes with classes (karma <= ) and (karma > 0)");
         exp1.printSummary();
     }
 }
