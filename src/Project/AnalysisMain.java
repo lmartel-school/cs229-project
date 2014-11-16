@@ -17,9 +17,16 @@ public class AnalysisMain {
         NaiveBayes nb = new NaiveBayes(moreUpvotes);
         nb.train(data.getTrain());
 
-        ClassificationResults exp1 = (new ClassificationExperiment(nb, new ClassificationOracle(moreUpvotes), data.getTest())).run();
+        BasicClassifier basic = new BasicClassifier(20);
+        basic.train(data.getTrain());
 
-        System.out.println("[RESULTS] Naive bayes with classes (karma <= ) and (karma > 0)");
-        exp1.printSummary();
+        ClassificationResults basicExp = (new ClassificationExperiment(basic, new ClassificationOracle(moreUpvotes), data.getTest())).run();
+        ClassificationResults nbExp = (new ClassificationExperiment(nb, new ClassificationOracle(moreUpvotes), data.getTest())).run();
+
+        System.out.println("[RESULTS] basic binary classifier:");
+        basicExp.printSummary();
+
+        System.out.println("[RESULTS] Naive bayes binary classification:");
+        nbExp.printSummary();
     }
 }
