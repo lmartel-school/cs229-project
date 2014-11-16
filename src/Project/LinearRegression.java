@@ -26,9 +26,9 @@ public class LinearRegression implements RegressionAlgorithm {
     public Map<Comment, Double> predict(List<Comment> comments) {
 
         // Features.writeFeatureMatrix(Config.BASE_PATH + Constants.LINEAR_REGRESSION_TEST_FILENAME, this.features, comments);
-        IO.writeToFile(Constants.LINEAR_REGRESSION_TEST_FILENAME, comments);
+        IO.writeToFile(Constants.LINEAR_REGRESSION_TEST_FILENAME, comments, null);
 
-        ProcessBuilder pb = new ProcessBuilder("python", Constants.LINEAR_REGRESSION_TEST);
+        ProcessBuilder pb = new ProcessBuilder("python", Constants.LINEAR_REGRESSION_UNIGRAM_TEST);
         try {
             System.out.println("Testing linear regression on " + comments.size() + " comments...");
             Process trainingProcess = pb.start();
@@ -57,9 +57,9 @@ public class LinearRegression implements RegressionAlgorithm {
     public void train(List<Comment> trainingData) {
 
         // Features.writeFeatureMatrix(Config.BASE_PATH + Constants.LINEAR_REGRESSION_TRAIN_FILENAME, this.features, trainingData);
-        IO.writeToFile(Constants.LINEAR_REGRESSION_TRAIN_FILENAME, trainingData);
+        IO.writeToFile(Constants.LINEAR_REGRESSION_TRAIN_FILENAME, trainingData, null);
 
-        ProcessBuilder pb = new ProcessBuilder("python", Constants.LINEAR_REGRESSION_TRAIN);
+        ProcessBuilder pb = new ProcessBuilder("python", Constants.LINEAR_REGRESSION_UNIGRAM_TRAIN);
         try {
             System.out.println("Training linear regression on " + trainingData.size() + " comments...");
             Process trainingProcess = pb.start();

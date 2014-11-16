@@ -19,11 +19,16 @@ public class ClassificationExperiment implements Experiment {
         Map<Comment, CommentClass> predictions = algorithm.classify(testData);
         Map<Comment, CommentClass> answers = oracle.classify(testData);
 
+        System.out.println("Made " + predictions.size() + " predictions.");
+
         ClassificationResults results = new ClassificationResults();
 
         for(Comment c : testData){
-            boolean positive = predictions.get(c) == CommentClass.GOOD;
-            boolean truu = predictions.get(c) == answers.get(c);
+            CommentClass prediction = predictions.get(c);
+            CommentClass answer = answers.get(c);
+            boolean positive = prediction.getValue() == CommentClass.GOOD.getValue();
+            boolean truu = prediction.getValue() == answer.getValue();
+
             if(truu && positive) results.truePositives++;
             if(truu && !positive) results.trueNegatives++;
             if(!truu && positive) results.falsePositives++;

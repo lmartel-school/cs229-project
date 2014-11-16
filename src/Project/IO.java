@@ -5,7 +5,7 @@ import java.util.List;
 
 public class IO {
 
-	public static void writeToFile(String pathToWriteTo, List<Comment> trainData) {
+	public static void writeToFile(String pathToWriteTo, List<Comment> trainData, Labeling labeling) {
 
     	Writer writer = null;
     	try {
@@ -13,8 +13,14 @@ public class IO {
     	          new FileOutputStream(pathToWriteTo), "utf-8"));
 //    	    System.out.println("opened writer to the file: " + pathToWriteTo);
     	    for (int i = 0; i < trainData.size(); i++) {
-    	    	Comment trainExample =trainData.get(i); 
-    	    	writer.write("" + trainExample.getScore() + "," + trainExample.getText() + "\n");
+    	    	Comment trainExample =trainData.get(i);
+                int label;
+                if(labeling == null){
+                    label = trainExample.getScore();
+                } else {
+                    label = labeling.label(trainExample).getValue();
+                }
+    	    	writer.write("" + label + "," + trainExample.getText() + "\n");
             }
     	} catch (IOException ex) {
     	   System.out.println("Q_Q, writer failed to open!");

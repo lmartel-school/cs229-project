@@ -1,3 +1,5 @@
+Linear regression:
+
 [TRAINING] Residual sum of squares: 0.04
 [TRAINING] Variance score: 1.00
 
@@ -5,3 +7,9 @@
 [TESTING] Variance score: -95.85
 
 
+n-class Naive Bayes:
+[TRAINING] Residual sum of squares: 17.10
+[TRAINING] Variance score: 0.64
+
+[TESTING] Residual sum of squares: 19.67
+[TESTING] Variance score: 0.44

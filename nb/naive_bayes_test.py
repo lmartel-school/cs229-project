@@ -26,6 +26,11 @@ with open('nb/naive_bayes.model', 'rb') as f:
     # print "Coefficients: \n", clf.coef_
     # The mean square error
     predicted_y = clf.predict(X)
+    with open('nb/naive_bayes.test.predictions', 'wb') as outfile:
+        for prediction in predicted_y:
+            print >> outfile, prediction
+
+
     errors = predicted_y.astype(int) - y.astype(int)
 
     print y.shape

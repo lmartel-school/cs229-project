@@ -14,4 +14,11 @@ public class ClassificationResults implements Results {
     public double getPrecision() {
         return  truePositives / (double) (falsePositives + truePositives);
     }
+
+    public void printSummary(){
+        System.out.println("Classifier results: precision " + getPrecision() + ", recall " + getRecall());
+        System.out.println("Confusion matrix ====== ");
+        System.out.println("TP: " + truePositives + "            FP: " + falsePositives);
+        System.out.println("FN: " + falseNegatives+ "            TN: " + trueNegatives);
+    }
 }
