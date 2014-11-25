@@ -26,6 +26,7 @@ public class ClassificationExperiment implements Experiment {
         for(Comment c : testData){
             CommentClass prediction = predictions.get(c);
             CommentClass answer = answers.get(c);
+
             boolean positive = prediction.getValue() == CommentClass.GOOD.getValue();
             boolean truu = prediction.getValue() == answer.getValue();
 

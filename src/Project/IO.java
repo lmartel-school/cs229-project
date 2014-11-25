@@ -1,54 +1,91 @@
 package Project;
+
 import java.io.*;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class IO {
 
-	public static void writeToFile(String pathToWriteTo, List<Comment> trainData, Labeling labeling) {
-
+	public static void writeInputFile(String filename, InputFileLineFormatter formatter, List<Comment> data) {
+        System.out.println(data.size() + " found");
     	Writer writer = null;
     	try {
-    	    writer = new BufferedWriter(new OutputStreamWriter(
-    	          new FileOutputStream(pathToWriteTo), "utf-8"));
-//    	    System.out.println("opened writer to the file: " + pathToWriteTo);
-    	    for (int i = 0; i < trainData.size(); i++) {
-    	    	Comment trainExample =trainData.get(i);
-                int label;
-                if(labeling == null){
-                    label = trainExample.getScore();
-                } else {
-                    label = labeling.label(trainExample).getValue();
-                }
-    	    	writer.write("" + label + "," + trainExample.getText() + "\n");
+    	    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"));
+    	    for (Comment comment : data){
+    	    	writer.write(formatter.getLine(comment));
             }
+            writer.close();
     	} catch (IOException ex) {
-    	   System.out.println("Q_Q, writer failed to open!");
-    	} finally {
-    	   try {writer.close();} catch (Exception ex) {
-    		   System.out.println("Q_Q, writer failed to close!");
-    	   }
+    	   ex.printStackTrace();
     	}
     }
-	
-	public static List<String> readProcessOutput(Process p){
-		List<String> outputLines = new ArrayList<String>();
-		BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-	    while(true){
-	    	String line;
-			try {
-				line = in.readLine();
-			} catch (IOException e) {
-				System.out.println("Error in IO.java::readProcessOutput. Breaking out of loop.");
-				break;
-			}
-	    	if (line == null) {
-	    		break;
-	    	}
-	    	outputLines.add(line);
-	    }
-		return outputLines;
-	}
+
+    public static void runProcess(ProcessBuilder pb){
+        try {
+            Process trainingProcess = pb.start();
+            BufferedReader stdOut = new BufferedReader(new InputStreamReader(trainingProcess.getInputStream()));
+            BufferedReader stdErr = new BufferedReader(new InputStreamReader(trainingProcess.getErrorStream()));
+            String line;
+            while ((line = stdErr.readLine()) != null) {
+                System.err.println("> ERROR: " + line);
+            }
+            while ((line = stdOut.readLine()) != null) {
+                System.out.println("> " + line);
+            }
+            trainingProcess.waitFor();
+            System.out.println("Process finished with code: " + trainingProcess.exitValue());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void runPython(String binary){
+        ProcessBuilder pb = new ProcessBuilder("python", binary);
+        runProcess(pb);
+    }
+
+    public static Map<Comment, CommentClass> readClassificationOutputFile(String filename, List<Comment> comments){
+        Map<Comment, CommentClass> classifications = new HashMap<Comment, CommentClass>();
+
+        try {
+            BufferedReader rd = new BufferedReader(new FileReader(new File(filename)));
+            String line;
+            for (int i = 0; (line = rd.readLine()) != null; i++){
+                CommentClass prediction = CommentClass.toEnum(Integer.parseInt(line));
+                assert(prediction != null);
+                classifications.put(comments.get(i), prediction);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Predictions file not found");
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return classifications;
+    }
+
+    public static Map<Comment, Double> readRegressionOutputFile(String filename, List<Comment> comments){
+        Map<Comment, Double> results = new HashMap<Comment, Double>();
+
+        try {
+            BufferedReader rd = new BufferedReader(new FileReader(new File(filename)));
+            String line;
+            for (int i = 0; (line = rd.readLine()) != null; i++){
+                results.put(comments.get(i), Double.parseDouble(line));
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Predictions file not found");
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return results;
+    }
 }
 
 	

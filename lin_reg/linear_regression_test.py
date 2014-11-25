@@ -25,6 +25,10 @@ with open('lin_reg/linear_regression.model', 'rb') as f:
 
     predictions = regr.predict(X)
 
+    with open('lin_reg/linear_regression.test.predictions', 'wb') as outfile:
+        for prediction in predictions:
+            print >> outfile, prediction
+
     # The coefficients
     print "Coefficients: \n", regr.coef_
     # The mean square error
