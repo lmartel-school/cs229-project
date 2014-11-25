@@ -27,6 +27,12 @@ public class Features {
         return features;
     }
 
+    public static List<Feature> trivialFeatures(){
+        List<Feature> features = new ArrayList<Feature>();
+        features.add(new InterceptFeature());
+        return features;
+    }
+
     public static List<Double> map(List<Feature> features, Comment comment){
         List<Double> values = new ArrayList<Double>();
         for(Feature f : features){
