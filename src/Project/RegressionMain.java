@@ -13,7 +13,7 @@ public class RegressionMain {
         List<Comment> comments = Item.getComments(connection);
         DataSplitter data = new PercentageSplitter(comments, 0.3);
 
-        RegressionAlgorithm linReg = new LinearRegression(Features.unigramFeatures(comments));
+        RegressionAlgorithm linReg = new LinearRegression(Features.complexFeatures());
         linReg.train(data.getTrain());
 
         linReg.predict(data.getTest());

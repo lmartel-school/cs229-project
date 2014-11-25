@@ -11,6 +11,7 @@ public abstract class LabeledFormatter implements InputFileLineFormatter {
     }
 
     public String getLabel(Comment comment) {
+        if(this.labeling == null) return Integer.toString(comment.getScore());
         return Integer.toString(this.labeling.label(comment).getValue());
     }
 

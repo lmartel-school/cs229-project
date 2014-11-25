@@ -14,6 +14,27 @@ import java.util.Map;
 public class Features {
     private Features() { /* abstract */ }
 
+    public static List<Feature> complexFeatures(){
+        List<Feature> features = new ArrayList<Feature>();
+        features.add(new AvgLengthFeature());
+        features.add(new CharLengthFeature());
+        features.add(new ContainsCapitalsFeature());
+        features.add(new DepthFeature());
+        features.add(new LinkFeature());
+        features.add(new SentenceLengthFeature());
+        features.add(new SwearFeature());
+        features.add(new WordLengthFeature());
+        return features;
+    }
+
+    public static List<Double> map(List<Feature> features, Comment comment){
+        List<Double> values = new ArrayList<Double>();
+        for(Feature f : features){
+            values.add(f.value(comment));
+        }
+        return values;
+    }
+
     public static void writeFeatureMatrix(String filename, List<Feature> features, List<Comment> data) throws IOException {
         System.out.println("Mapping " + features.size() + " features onto " + data.size() + " comments.");
         System.out.println("Writing linear regression input file...");
@@ -27,13 +48,6 @@ public class Features {
             writer.write(c.getScore() + ", " + x.substring(1, x.length() - 1) + '\n');
         }
         writer.close();
-    }
-
-    public static List<Feature> someFeatures(){
-        List<Feature> features = new ArrayList<Feature>();
-        features.add(new InterceptFeature());
-        features.add(new DepthFeature());
-        return features;
     }
 
     public static List<Feature> unigramFeatures(List<Comment> comments){

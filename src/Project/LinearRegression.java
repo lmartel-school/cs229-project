@@ -16,11 +16,9 @@ public class LinearRegression implements RegressionAlgorithm {
 
     @Override
     public void train(List<Comment> trainingData) {
-
-        // Features.writeFeatureMatrix(Config.BASE_PATH + Constants.LINEAR_REGRESSION_TRAIN_FILENAME, this.features, trainingData);
         System.out.println("Training linear regression on " + trainingData.size() + " comments...");
-        IO.writeInputFile(Constants.LINEAR_REGRESSION_TRAIN_FILENAME, new UnigramFormatter(), trainingData);
-        IO.runPython(Constants.LINEAR_REGRESSION_UNIGRAM_TRAIN);
+        IO.writeInputFile(Constants.LINEAR_REGRESSION_TRAIN_FILENAME, new FeatureFormatter(features), trainingData);
+        IO.runPython(Constants.LINEAR_REGRESSION_FEATURES_TRAIN);
     }
 
     @Override
@@ -32,11 +30,9 @@ public class LinearRegression implements RegressionAlgorithm {
 
     @Override
     public Map<Comment, Double> predict(List<Comment> comments) {
-
-        // Features.writeFeatureMatrix(Config.BASE_PATH + Constants.LINEAR_REGRESSION_TEST_FILENAME, this.features, comments);
         System.out.println("Testing linear regression on " + comments.size() + " comments...");
-        IO.writeInputFile(Constants.LINEAR_REGRESSION_TEST_FILENAME, new UnigramFormatter(), comments);
-        IO.runPython(Constants.LINEAR_REGRESSION_UNIGRAM_TEST);
+        IO.writeInputFile(Constants.LINEAR_REGRESSION_TEST_FILENAME, new FeatureFormatter(features), comments);
+        IO.runPython(Constants.LINEAR_REGRESSION_FEATURES_TEST);
         return IO.readRegressionOutputFile(Constants.LINEAR_REGRESSION_PREDICTION_FILENAME, comments);
     }
 

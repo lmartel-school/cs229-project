@@ -21,6 +21,7 @@ public class RegressionExperiment implements Experiment {
     @Override
     public Results run() {
         Map<Comment, Double> predictions = algorithm.predict(this.testData);
+        System.out.println("Made " + predictions.size() + " predictions.");
         return null;
     }
 }

@@ -10,8 +10,10 @@ public class Constants {
 
     public static final String LINEAR_REGRESSION_TRAIN_FILENAME = "lin_reg/linear_regression.train.inputs";
     public static final String LINEAR_REGRESSION_TEST_FILENAME = "lin_reg/linear_regression.test.inputs";
-    public static final String LINEAR_REGRESSION_UNIGRAM_TRAIN = "lin_reg/linear_regression_train.py";
-    public static final String LINEAR_REGRESSION_UNIGRAM_TEST = "lin_reg/linear_regression_test.py";
+    public static final String LINEAR_REGRESSION_UNIGRAM_TRAIN = "lin_reg/linear_regression_unigrams_train.py";
+    public static final String LINEAR_REGRESSION_UNIGRAM_TEST = "lin_reg/linear_regression_unigrams_test.py";
+    public static final String LINEAR_REGRESSION_FEATURES_TRAIN = "lin_reg/linear_regression_train.py";
+    public static final String LINEAR_REGRESSION_FEATURES_TEST = "lin_reg/linear_regression_test.py";
     public static final String LINEAR_REGRESSION_PREDICTION_FILENAME = "lin_reg/linear_regression.test.predictions";
 
     public static final String NAIVE_BAYES_TRAIN_FILENAME = "nb/naive_bayes.train.inputs";
