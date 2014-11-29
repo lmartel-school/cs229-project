@@ -14,3 +14,7 @@ out
 *.model
 *.predictions
 *.vectorizer
+
+*.bak
+redditHtmlData
+redditSubmissions.csv
