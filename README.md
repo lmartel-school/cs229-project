@@ -26,3 +26,4 @@ Java 7 is one better than Java 6, so do this:
 1. [Download and install](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) JDK 1.7
 2. Run `/usr/libexec/java_home -v 1.7` in your terminal to find where it got installed
 3. Go to project settings, and select 1.7 in the `Project SDK` dropdown menu. If it's not there yet, press `new` and load it from the install location from step 2.
+4. Change "Project Language Level" to 7 in the same settings menu. We probably won't need/use this stuff though.
