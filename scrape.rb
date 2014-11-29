@@ -80,13 +80,20 @@ end
 class CommentKarmaScraper
     def scrape_missing!
         count = 0
-        Item.where(type: 'comment', score: nil, point_scrape_attempted: nil).order(Sequel.asc :id).each do |attrs|
-            id = attrs[:id]
-            puts "Scraping score for #{id}..." if (count += 1) % 10 == 1
-            response = HTTParty.get("https://hn.algolia.com/api/v1/items/#{id}")
-            if response.code == 200
-                points = JSON.parse(response.body)['points']
-                Item.where(id: id).update(score: points, point_scrape_attempted: true)
+        loop_with_retries do
+            missing = Item.where(type: 'comment', score: nil, point_scrape_attempted: nil).order(Sequel.asc :id)
+            if missing.empty?
+                puts 'All done.'
+                exit 0
+            end
+            missing.each do |attrs|
+                id = attrs[:id]
+                puts "Scraping score for #{id}..." if (count += 1) % 10 == 1
+                response = HTTParty.get("https://hn.algolia.com/api/v1/items/#{id}")
+                if response.code == 200
+                    points = JSON.parse(response.body)['points']
+                    Item.where(id: id).update(score: points, point_scrape_attempted: true)
+                end
             end
         end
     end
@@ -106,14 +113,24 @@ def main
     end
 
     count = 0
-    begin
-        loop do
-            id = Item.insert(scraper.get)
-            puts "Scraped to #{id}" if (count += 1) % 10 == 1
-            scraper.next!
+    loop_with_retries do
+        id = Item.insert(scraper.get)
+        puts "Scraped to #{id}" if (count += 1) % 10 == 1
+        scraper.next!
+    end
+end
+
+def loop_with_retries
+    loop do
+        begin
+            yield
+        rescue SignalException
+            puts 'Stopping.'
+            exit 1
+        rescue Exception => e
+            puts e.message
+            puts 'Error, suppressed, continuing...'
         end
-    rescue SignalException
-        puts 'Stopping.'
     end
 end
 
