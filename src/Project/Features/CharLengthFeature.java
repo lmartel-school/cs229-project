@@ -1,6 +1,6 @@
-package Project.Features;
+package Project.features;
 
-import Project.Comment;
+import Project.models.Comment;
 
 /**
  * Created by daria on 11/15/14.

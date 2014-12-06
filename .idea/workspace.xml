@@ -2,13 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2aba2a12-e110-44f9-b22d-4701ca4970c3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Config.java" afterPath="$PROJECT_DIR$/src/Project/Config.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/AnalysisMain.java" afterPath="$PROJECT_DIR$/src/Project/runnable/AnalysisMain.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/BalancedPercentageSplitter.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/BalancedPercentageSplitter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/BasicClassifier.java" afterPath="$PROJECT_DIR$/src/Project/algorithms/BasicClassifier.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/BasicSplitter.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/BasicSplitter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/BinaryThresholdLabeling.java" afterPath="$PROJECT_DIR$/src/Project/models/BinaryThresholdLabeling.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/ClassificationAlgorithm.java" afterPath="$PROJECT_DIR$/src/Project/algorithms/ClassificationAlgorithm.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/ClassificationExperiment.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/ClassificationExperiment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/ClassificationOracle.java" afterPath="$PROJECT_DIR$/src/Project/algorithms/ClassificationOracle.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/ClassificationResults.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/ClassificationResults.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Comment.java" afterPath="$PROJECT_DIR$/src/Project/models/Comment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/CommentClass.java" afterPath="$PROJECT_DIR$/src/Project/models/CommentClass.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/DataSplitter.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/DataSplitter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Experiment.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/Experiment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/ExtremePercentageSplitter.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/ExtremePercentageSplitter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/FeatureFormatter.java" afterPath="$PROJECT_DIR$/src/Project/io/FeatureFormatter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/IO.java" afterPath="$PROJECT_DIR$/src/Project/io/IO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/InputFileLineFormatter.java" afterPath="$PROJECT_DIR$/src/Project/io/InputFileLineFormatter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Item.java" afterPath="$PROJECT_DIR$/src/Project/models/Item.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/LabeledFormatter.java" afterPath="$PROJECT_DIR$/src/Project/io/LabeledFormatter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Labeling.java" afterPath="$PROJECT_DIR$/src/Project/models/Labeling.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/LearningAlgorithm.java" afterPath="$PROJECT_DIR$/src/Project/algorithms/LearningAlgorithm.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/LinearRegression.java" afterPath="$PROJECT_DIR$/src/Project/algorithms/LinearRegression.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/NaiveBayes.java" afterPath="$PROJECT_DIR$/src/Project/algorithms/NaiveBayes.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Oracle.java" afterPath="$PROJECT_DIR$/src/Project/algorithms/Oracle.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/PercentageSplitter.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/PercentageSplitter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/RegressionAlgorithm.java" afterPath="$PROJECT_DIR$/src/Project/algorithms/RegressionAlgorithm.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/RegressionExperiment.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/RegressionExperiment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/RegressionMain.java" afterPath="$PROJECT_DIR$/src/Project/runnable/RegressionMain.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Results.java" afterPath="$PROJECT_DIR$/src/Project/pipeline/Results.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Submission.java" afterPath="$PROJECT_DIR$/src/Project/models/Submission.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/UnigramFormatter.java" afterPath="$PROJECT_DIR$/src/Project/io/UnigramFormatter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/AvgLengthFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/AvgLengthFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/CharLengthFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/CharLengthFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/ContainsCapitalsFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/ContainsCapitalsFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/Feature.java" afterPath="$PROJECT_DIR$/src/Project/features/Feature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/Features.java" afterPath="$PROJECT_DIR$/src/Project/features/Features.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/InterceptFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/InterceptFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/LinkFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/LinkFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/MinutesAfterArticleFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/MinutesAfterArticleFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/RegressionFeatureVector.java" afterPath="$PROJECT_DIR$/src/Project/features/RegressionFeatureVector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/SentenceLengthFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/SentenceLengthFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/SwearFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/SwearFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/TimeSegmentFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/TimeSegmentFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/UnigramFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/UnigramFeature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/features/WordLengthFeature.java" afterPath="$PROJECT_DIR$/src/Project/features/WordLengthFeature.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cs229-project.iws" />
@@ -73,10 +112,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="AnalysisMain.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/AnalysisMain.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/runnable/AnalysisMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
-              <caret line="13" column="91" selection-start-line="13" selection-start-column="84" selection-end-line="13" selection-end-column="91" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="945">
+              <caret line="23" column="91" selection-start-line="23" selection-start-column="84" selection-end-line="23" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -85,7 +124,7 @@
       <file leaf-file-name="Config.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Project/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+            <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="225">
               <caret line="7" column="65" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
               <folding />
             </state>
@@ -93,19 +132,19 @@
         </entry>
       </file>
       <file leaf-file-name="TimeSegmentFeature.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Project/Features/TimeSegmentFeature.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/features/TimeSegmentFeature.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.044977512" vertical-offset="0" max-vertical-offset="690">
-              <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.30927834" vertical-offset="0" max-vertical-offset="690">
+              <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MinutesAfterArticleFeature.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Features/MinutesAfterArticleFeature.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/features/MinutesAfterArticleFeature.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+            <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="285">
               <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
               <folding />
             </state>
@@ -113,9 +152,9 @@
         </entry>
       </file>
       <file leaf-file-name="SwearFeature.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Features/SwearFeature.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/features/SwearFeature.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+            <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="495">
               <caret line="10" column="25" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
               <folding />
             </state>
@@ -123,9 +162,9 @@
         </entry>
       </file>
       <file leaf-file-name="Features.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Features/Features.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/features/Features.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1260">
+            <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1275">
               <caret line="33" column="64" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
               <folding />
             </state>
@@ -133,10 +172,10 @@
         </entry>
       </file>
       <file leaf-file-name="Item.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Item.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/models/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2145" max-vertical-offset="2310">
-              <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2115" max-vertical-offset="2280">
+              <caret line="141" column="8" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -166,6 +205,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/Project/Config.java" />
+        <option value="$PROJECT_DIR$/src/Project/Features/TimeSegmentFeature.java" />
+        <option value="$PROJECT_DIR$/src/Project/features/TimeSegmentFeature.java" />
       </list>
     </option>
   </component>
@@ -185,7 +226,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="0" />
+    <option name="STATE" value="2" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -200,6 +241,10 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -250,16 +295,144 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="runnable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pipeline" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="features" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs229-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane />
-      </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -271,8 +444,8 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/jar" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="options.lastSelected" value="vcs.Git" />
@@ -298,7 +471,7 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="Project.AnalysisMain" />
+      <option name="MAIN_CLASS_NAME" value="Project.runnable.AnalysisMain" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -488,10 +661,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1174" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33049244" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -506,8 +679,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24973376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34185606" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24973376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34105653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -540,7 +713,79 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Project/AnalysisMain.java">
+    <entry file="file://$PROJECT_DIR$/strip.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1200">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/runnable/AnalysisMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="795">
+          <caret line="13" column="91" selection-start-line="13" selection-start-column="84" selection-end-line="13" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="225">
+          <caret line="7" column="65" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/features/TimeSegmentFeature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="690">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/features/MinutesAfterArticleFeature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="285">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/features/SwearFeature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="495">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/features/Features.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1275">
+          <caret line="33" column="64" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/models/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2145" max-vertical-offset="2310">
+          <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strip.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1200">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/runnable/AnalysisMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
@@ -548,7 +793,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/TimeSegmentFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/TimeSegmentFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="720">
           <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="26" selection-end-column="59" />
@@ -556,7 +801,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/MinutesAfterArticleFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/MinutesAfterArticleFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="255">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
@@ -564,7 +809,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/SwearFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/SwearFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="495">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
@@ -572,7 +817,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/Features.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/Features.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1260">
           <caret line="33" column="64" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
@@ -580,7 +825,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Item.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/models/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2145" max-vertical-offset="2310">
           <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="8" />
@@ -596,7 +841,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/AnalysisMain.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/runnable/AnalysisMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
@@ -604,7 +849,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/TimeSegmentFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/TimeSegmentFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="192" max-vertical-offset="720">
           <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="26" selection-end-column="59" />
@@ -612,7 +857,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/MinutesAfterArticleFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/MinutesAfterArticleFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="285">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
@@ -620,7 +865,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/SwearFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/SwearFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="495">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
@@ -628,7 +873,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/Features.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/Features.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1260">
           <caret line="33" column="64" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
@@ -636,7 +881,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Item.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/models/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2145" max-vertical-offset="2310">
           <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="8" />
@@ -652,7 +897,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/AnalysisMain.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/runnable/AnalysisMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="570">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
@@ -660,7 +905,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Item.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/models/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1669" max-vertical-offset="2175">
           <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="8" />
@@ -690,21 +935,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/DepthFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/DepthFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26112187" vertical-offset="0" max-vertical-offset="517">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/LinkFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/LinkFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20309478" vertical-offset="0" max-vertical-offset="517">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/BasicClassifier.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/algorithms/BasicClassifier.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.66731143" vertical-offset="0" max-vertical-offset="555">
           <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
@@ -718,49 +963,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/AvgLengthFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/AvgLengthFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
           <caret line="10" column="44" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/InterceptFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/InterceptFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20309478" vertical-offset="0" max-vertical-offset="517">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/RegressionFeatureVector.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/RegressionFeatureVector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.116054155" vertical-offset="0" max-vertical-offset="517">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/SentenceLengthFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/SentenceLengthFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
           <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/WordLengthFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/WordLengthFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
           <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/ContainsCapitalsFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/ContainsCapitalsFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/CharLengthFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/CharLengthFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29013538" vertical-offset="0" max-vertical-offset="517">
           <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
@@ -775,36 +1020,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Item.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/models/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1374" max-vertical-offset="2175">
-          <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2115" max-vertical-offset="2280">
+          <caret line="141" column="8" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/CommentClass.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/models/CommentClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11235955" vertical-offset="0" max-vertical-offset="801">
           <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Comment.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/models/Comment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.074906364" vertical-offset="0" max-vertical-offset="801">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/Feature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/Feature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11235955" vertical-offset="0" max-vertical-offset="801">
           <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/Features.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/Features.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="1125">
           <caret line="33" column="64" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
@@ -819,7 +1064,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/MinutesAfterArticleFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/MinutesAfterArticleFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
@@ -827,7 +1072,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/SwearFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/SwearFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
@@ -835,10 +1080,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/AnalysisMain.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/runnable/AnalysisMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
-          <caret line="13" column="91" selection-start-line="13" selection-start-column="84" selection-end-line="13" selection-end-column="91" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="945">
+          <caret line="23" column="91" selection-start-line="23" selection-start-column="84" selection-end-line="23" selection-end-column="91" />
           <folding />
         </state>
       </provider>
@@ -851,10 +1096,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Features/TimeSegmentFeature.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/features/TimeSegmentFeature.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.044977512" vertical-offset="0" max-vertical-offset="690">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.30927834" vertical-offset="0" max-vertical-offset="690">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
           <folding />
         </state>
       </provider>

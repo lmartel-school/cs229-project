@@ -1,6 +1,6 @@
-package Project.Features;
+package Project.features;
 
-import Project.Comment;
+import Project.models.Comment;
 
 public interface Feature {
 

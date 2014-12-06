@@ -1,8 +1,8 @@
-package Project.Features;
+package Project.features;
 
-import Project.Comment;
-import Project.Item;
-import Project.Submission;
+import Project.models.Comment;
+import Project.models.Item;
+import Project.models.Submission;
 
 /**
  * Created by daria on 11/14/14.

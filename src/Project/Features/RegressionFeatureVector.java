@@ -1,4 +1,4 @@
-package Project.Features;
+package Project.features;
 
 import java.util.List;
 
