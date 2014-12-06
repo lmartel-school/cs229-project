@@ -24,6 +24,14 @@ public class Features {
         features.add(new SentenceLengthFeature());
         features.add(new SwearFeature());
         features.add(new WordLengthFeature());
+        features.add(new TimeSegmentFeature(1, 0, 5, 29));      // early morning
+        features.add(new TimeSegmentFeature(5, 30, 8, 29));     // morning
+        features.add(new TimeSegmentFeature(8, 30, 11, 59));    // pre-lunch
+        features.add(new TimeSegmentFeature(12, 0, 12, 59));    // lunch hour
+        features.add(new TimeSegmentFeature(13, 0, 17, 29));    // afternoon
+        features.add(new TimeSegmentFeature(17, 30, 20, 59));   // evening
+        features.add(new TimeSegmentFeature(21, 0, 22, 59));    // night
+        features.add(new TimeSegmentFeature(23, 0, 24, 59));    // late night
         return features;
     }
 
