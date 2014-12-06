@@ -1,6 +1,7 @@
 src/Project/Config.java
 
 *.project
+*.idea
 *.classpath
 
 out
