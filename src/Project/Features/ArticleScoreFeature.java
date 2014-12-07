@@ -13,6 +13,6 @@ public class ArticleScoreFeature implements Feature {
 
     private int base_score(Item item){
         if(item instanceof Submission) return item.getScore();
-        return base_score(((Comment) item).getParent());
+        return ((Comment)item).getParent() == null ? base_score(((Comment) item).getParent()) : 1;
     }
 }
