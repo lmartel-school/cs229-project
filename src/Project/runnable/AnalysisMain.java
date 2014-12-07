@@ -3,7 +3,6 @@ package Project.runnable;
 import Project.Config;
 import Project.algorithms.ClassificationAlgorithm;
 import Project.algorithms.ClassificationOracle;
-import Project.algorithms.NaiveBayesClassifier;
 import Project.algorithms.WekaClassifier;
 import Project.features.ClassificationFeature;
 import Project.features.Feature;
@@ -46,22 +45,15 @@ public class AnalysisMain {
             System.out.println("Running classification algorithm for score > 1");
             threshold = new BinaryThresholdLabeling(1);
             data = new PercentageSplitter(comments, 0.3);
-//            data = new BalancedPercentageSplitter(comments, 0.3, threshold);
 
         }
 
-//        BasicClassifier basic = new BasicClassifier(20);
-//        basic.train(data.getTrain());
-//        ClassificationResults basicExp = (new ClassificationExperiment(basic, new ClassificationOracle(threshold), data.getTest())).run();
-//        System.out.println("[RESULTS] basic binary classifier:");
-//        basicExp.printSummary();
-
-        NaiveBayesClassifier nb = new NaiveBayesClassifier(threshold);
-        nb.train(data.getTrain());
-        List<Comment> nbToClassify = new ArrayList<>(data.getTest());
-        ClassificationResults nbResults = (new ClassificationExperiment(nb, new ClassificationOracle(threshold), nbToClassify)).run();
-        System.out.println("[RESULTS] Naive bayes binary classification:");
-        nbResults.printSummary();
+//        NaiveBayesClassifier nb = new NaiveBayesClassifier(threshold);
+//        nb.train(data.getTrain());
+//        List<Comment> nbToClassify = new ArrayList<>(data.getTest());
+//        ClassificationResults nbResults = (new ClassificationExperiment(nb, new ClassificationOracle(threshold), nbToClassify)).run();
+//        System.out.println("[RESULTS] Naive bayes binary classification:");
+//        nbResults.printSummary();
 
         List<Feature> baseFeatures = Features.complexFeatures();
         List<Feature> allFeatures = new ArrayList<>(baseFeatures);
