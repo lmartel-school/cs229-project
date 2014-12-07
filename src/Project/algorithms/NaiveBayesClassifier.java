@@ -1,7 +1,7 @@
 package Project.algorithms;
 
-//import Project.Features.Feature;
-//import Project.Features.Features;
+//import Project.features.Feature;
+//import Project.features.features;
 
 import Project.models.CommentClass;
 import Project.Config;
