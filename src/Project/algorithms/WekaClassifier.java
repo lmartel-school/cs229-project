@@ -12,6 +12,7 @@ import weka.classifiers.Evaluation;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.Utils;
+import weka.core.converters.ArffLoader;
 import weka.core.converters.CSVLoader;
 
 import java.io.File;
@@ -65,14 +66,15 @@ public class WekaClassifier implements ClassificationAlgorithm {
         assert(this.threshold.label(comments.get(0)) == this.firstTrainComment);
 
         System.out.println("Testing " + getName() + " on " + comments.size() + " comments...");
-        IO.writeInputFileWithHeaders(Constants.WEKA_TEST_FILENAME, new WordLabeledFeatureFormatter(this.threshold, this.features, ","), comments, this.features);
-
+//        IO.writeInputFileWithHeaders(Constants.WEKA_TEST_FILENAME, new WordLabeledFeatureFormatter(this.threshold, this.features, ","), comments, this.features);
+        IO.writeWekaFile(Constants.WEKA_TEST_FILENAME, comments, features, this.threshold);
 
         Map<Comment, CommentClass> classifications = new HashMap<>();
         try {
             Evaluation eval = new Evaluation(this.train);
 
-            CSVLoader loader = new CSVLoader();
+//            CSVLoader loader = new CSVLoader();
+            ArffLoader loader = new ArffLoader();
             loader.setSource(new File(Constants.WEKA_TEST_FILENAME));
             Instances test = loader.getDataSet();
             test.setClassIndex(0);
@@ -103,13 +105,13 @@ public class WekaClassifier implements ClassificationAlgorithm {
     public void train(List<Comment> comments) {
         this.firstTrainComment = this.threshold.label(comments.get(0));
         System.out.println("Training " + getName() + " on " + comments.size() + " comments...");
-        IO.writeInputFileWithHeaders(Constants.WEKA_TRAIN_FILENAME, new WordLabeledFeatureFormatter(this.threshold, this.features, ","), comments, features);
-
+//        IO.writeInputFileWithHeaders(Constants.WEKA_TRAIN_FILENAME, new WordLabeledFeatureFormatter(this.threshold, this.features, ","), comments, features);
+        IO.writeWekaFile(Constants.WEKA_TRAIN_FILENAME, comments, features, this.threshold);
         try {
             this.model = klass.newInstance();
     //      this.model.setProbabilityEstimates(true);
-
-            CSVLoader loader = new CSVLoader();
+            ArffLoader loader = new ArffLoader();
+//            CSVLoader loader = new CSVLoader();
             loader.setSource(new File(Constants.WEKA_TRAIN_FILENAME));
             this.train = loader.getDataSet();
             this.train.setClassIndex(0);

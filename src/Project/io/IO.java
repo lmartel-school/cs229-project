@@ -3,16 +3,64 @@ package Project.io;
 import Project.features.Feature;
 import Project.models.Comment;
 import Project.models.CommentClass;
+import Project.models.Labeling;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 public class IO {
 
-    public static void writeWekaFile(String filename, List<Comment> comments, List<Feature> featuresPerComment){
+    public static void writeWekaFile(String filename, List<Comment> comments, List<Feature> featuresPerComment, Labeling labeling){
         // TODO http://www.cs.waikato.ac.nz/ml/weka/arff.html
+
+        try {
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"));
+            writer.write("@RELATION commentScores\n");
+            HashMap<String, Integer> featureNameAppendedNums = new HashMap<>();
+
+            // Write feature names at the header
+            writer.write("@ATTRIBUTE class {" + CommentClass.getValuesAsString() + "}\n");
+            for (int i = 0; i < featuresPerComment.size(); i++) {
+                Feature f = featuresPerComment.get(i);
+                // Create the feature names with appendedNums so repeats don't have the same name
+                String featureName = f.getClass().getSimpleName();
+                if (!featureNameAppendedNums.containsKey(featureName)) {
+                    featureNameAppendedNums.put(featureName, 1);
+                }
+                int appendedNum = featureNameAppendedNums.get(featureName);
+                String appendedFeatureName = featureName + appendedNum;
+                featureNameAppendedNums.put(featureName, appendedNum+1);
+
+                // Write to file
+                String newLine = "@ATTRIBUTE " + appendedFeatureName + " NUMERIC\n";
+                writer.write(newLine);
+            }
+
+            // Write data after the header
+            writer.write("@DATA\n");
+            for (int i = 0; i < comments.size(); i++) {
+                // Write comment class {GOOD, BAD}
+                Comment c = comments.get(i);
+                CommentClass label = labeling.label(c);
+                String newLine = label.getName() + ",";
+
+                // Write other features
+                for (int j = 0; j < featuresPerComment.size(); j++) {
+                    Feature f = featuresPerComment.get(j);
+                    newLine += f.value(c);
+                    if (j != featuresPerComment.size()-1) {
+                        newLine += ",";
+                    }
+                }
+                writer.write(newLine+"\n");
+            }
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void writeInputFile(String filename, InputFileLineFormatter formatter, List<Comment> data) {

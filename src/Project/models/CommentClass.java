@@ -29,6 +29,16 @@ public enum CommentClass {
         return name;
     }
 
+    // Simon: this returns the comma-delimited values that this enum can take
+    public static String getValuesAsString() {
+        String allCCStrings = "";
+        for(CommentClass cc : values()){
+            allCCStrings += cc.getName() + ",";
+        }
+        allCCStrings = allCCStrings.substring(0, allCCStrings.length()-1); // remove last ","
+        return allCCStrings;
+    }
+
     public static CommentClass other(CommentClass klass) {
         return (klass == BAD) ? GOOD : BAD;
     }
