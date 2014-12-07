@@ -9,9 +9,8 @@ DB = Sequel.sqlite DB_FILE
 
 DB.create_table? :reddit_items do
 
-    Integer :id, primary_key: true
+    String :id
     
-    String :image_id
     String :type
 
     String :by
@@ -19,8 +18,9 @@ DB.create_table? :reddit_items do
     String :text, text: true
     String :parent
     Integer :score
-    
+
     # Only for submissions
+    Integer :snap_id
     String :subreddit
     String :title
     String :url
@@ -34,7 +34,7 @@ def load_submissions!
     prior_count = Item.where(type: SUBMISSION).count
     puts 'Working...'
     buffer = []
-    CSV.foreach('redditSubmissions.csv', col_sep: ',',  quote_char: '"') do |row|
+    CSV.foreach('../project-data/redditSubmissions.csv', col_sep: ',',  quote_char: '"') do |row|
         next if (count += 1) <= prior_count + 1 # +1 to skip headers
         if count % 1000 == 0
             Item.multi_insert(buffer)
@@ -46,7 +46,8 @@ def load_submissions!
             subreddit, number_of_downvotes,localtime,score,number_of_comments,username = row
 
         buffer.push({
-            image_id: image_id,
+            id: reddit_id,
+            snap_id: image_id,
             type: SUBMISSION,
             by: username,
             time: DateTime.parse(rawtime),
@@ -57,6 +58,7 @@ def load_submissions!
             title: title,
             url: "IMG-#{image_id}" # dataset doesn't have urls, so we substitute image ids
         })
+
     end
     puts "Loaded #{count} submissions."
 end

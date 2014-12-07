@@ -5,9 +5,9 @@ require 'json'
 DB_FILE = 'scrape.db'
 DB = Sequel.sqlite DB_FILE
 
-DB.alter_table(:items) do
-    add_column :stripped_text, String, :text => true unless DB[:items].columns.include? :stripped_text
-    add_column :links, String unless DB[:items].columns.include? :stripped_text
+DB.alter_table(:reddit_items) do
+    add_column :stripped_text, String, :text => true unless DB[:reddit_items].columns.include? :stripped_text
+    add_column :links, String unless DB[:reddit_items].columns.include? :stripped_text
 end
 
 
@@ -28,7 +28,7 @@ def makeSwearWords
 end
 
 
-Item = DB[:items]
+Item = DB[:reddit_items]
 
 # Strips all the nastay out
 def UpdateComments

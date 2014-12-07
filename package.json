@@ -2,6 +2,7 @@
   "dependencies": {
     "coffee-script": "*",
     "sqlite3": "*",
-    "sentiment": "*"
+    "sentiment": "*",
+    "lda": "*"
   }
 }
