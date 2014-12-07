@@ -13,6 +13,6 @@ public class TimeSinceArticleFeature implements Feature {
 
     private long base_time(Item item){
         if(item instanceof Submission) return item.getTime();
-        return ((Comment)item).getParent() == null ? base_time(((Comment) item).getParent()) : item.getTime();
+        return ((Comment)item).getParent() != null ? base_time(((Comment) item).getParent()) : item.getTime();
     }
 }

@@ -7,5 +7,8 @@ import Project.models.Comment;
  */
 public class TimeSinceParentFeature implements Feature {
     @Override
-    public double value(Comment comment) { return (comment.getTime() - (comment.getParent()).getTime()) / 60; }
+    public double value(Comment comment) {
+        if(comment.getParent() == null) return 0;
+        return (comment.getTime() - (comment.getParent()).getTime()) / 60;
+    }
 }
