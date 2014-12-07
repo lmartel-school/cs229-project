@@ -10,10 +10,9 @@ import Project.features.Feature;
 import Project.features.Features;
 import Project.models.*;
 import Project.pipeline.*;
+import hr.irb.fastRandomForest.FastRandomForest;
 import weka.classifiers.Classifier;
-import weka.classifiers.functions.Logistic;
 import weka.classifiers.functions.SMO;
-import weka.classifiers.trees.J48;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -46,15 +45,7 @@ public class AnalysisMain {
             System.out.println("Running classification algorithm for score > 1");
             threshold = new BinaryThresholdLabeling(1);
             data = new PercentageSplitter(comments, 0.3);
-//            data = new BalancedPercentageSplitter(comments, 0.3, threshold);
-
         }
-
-//        BasicClassifier basic = new BasicClassifier(20);
-//        basic.train(data.getTrain());
-//        ClassificationResults basicExp = (new ClassificationExperiment(basic, new ClassificationOracle(threshold), data.getTest())).run();
-//        System.out.println("[RESULTS] basic binary classifier:");
-//        basicExp.printSummary();
 
         NaiveBayesClassifier nb = new NaiveBayesClassifier(threshold);
         nb.train(data.getTrain());
@@ -64,19 +55,31 @@ public class AnalysisMain {
         nbResults.printSummary();
 
         List<Feature> baseFeatures = Features.complexFeatures();
-        List<Feature> allFeatures = new ArrayList<>(baseFeatures);
+        List<Feature> cumulativeFeatures = new ArrayList<>(baseFeatures);
 
-        runWekaExperiment(Logistic.class, baseFeatures, threshold, data);
-        runWekaExperiment(SMO.class, baseFeatures, threshold, data);
-        runWekaExperiment(J48.class, allFeatures, threshold, data);
+        try {
+//            pipe(runWekaExperiment(Logistic.class, baseFeatures, threshold, data), cumulativeFeatures);
+            pipe(runWekaExperiment(SMO.class, baseFeatures, threshold, data), cumulativeFeatures);
+//            runWekaExperiment(J48.class, cumulativeFeatures, threshold, data);
+        } catch (IllegalAccessException | InstantiationException e) {
+            System.out.println("Error initializing Weka classes");
+            e.printStackTrace();
+        }
+
+        FastRandomForest c = new FastRandomForest();
+        ClassificationAlgorithm randomForest = WekaClassifier.buildForest(new FastRandomForest(), threshold, cumulativeFeatures);
+        randomForest.train(data.getTrain());
+        ClassificationResults results = (new ClassificationExperiment(randomForest, new ClassificationOracle(threshold), data.getTest())).run();
+        System.out.println("[RESULTS] random forest binary classification:");
+        results.printSummary();
     }
 
     private static void pipe(Map<Comment, CommentClass> classifications, List<Feature> features) {
         features.add(new ClassificationFeature(classifications));
     }
 
-    private static Map<Comment, CommentClass> runWekaExperiment(Class<? extends Classifier> klass, List<Feature> features, Labeling threshold, DataSplitter data){
-        ClassificationAlgorithm algo = new WekaClassifier(SMO.class, threshold, features);
+    private static Map<Comment, CommentClass> runWekaExperiment(Class<? extends Classifier> klass, List<Feature> features, Labeling threshold, DataSplitter data) throws IllegalAccessException, InstantiationException {
+        ClassificationAlgorithm algo = WekaClassifier.build(SMO.class, threshold, features);
         algo.train(data.getTrain());
         ClassificationResults results = (new ClassificationExperiment(algo, new ClassificationOracle(threshold), data.getTest())).run();
         System.out.println("[RESULTS] " + klass.getName() + " binary classification:");

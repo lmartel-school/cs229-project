@@ -7,6 +7,7 @@ import Project.io.WordLabeledFeatureFormatter;
 import Project.models.Comment;
 import Project.models.CommentClass;
 import Project.models.Labeling;
+import hr.irb.fastRandomForest.FastRandomForest;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.core.Instance;
@@ -30,19 +31,26 @@ public class WekaClassifier implements ClassificationAlgorithm {
 
     private final List<Feature> features;
     private final Labeling threshold;
-    private final Class<? extends Classifier> klass;
 
-    private Classifier model;
+    private WekaAdapter model;
     private CommentClass firstTrainComment;
     private Instances train;
 
-    public WekaClassifier(Class<? extends Classifier> klass, Labeling threshold, List<Feature> features){
-        this.klass = klass;
+    private WekaClassifier(WekaAdapter model, Labeling threshold, List<Feature> features){
+        this.model = model;
         this.threshold = threshold;
         this.features = features;
     }
 
-    private String getName() { return klass.getName(); }
+    public static WekaClassifier build(Class<? extends Classifier> klass, Labeling threshold, List<Feature> features) throws InstantiationException, IllegalAccessException {
+        return new WekaClassifier(new WekaClassifierAdapter(klass), threshold, features);
+    }
+
+    public static WekaClassifier buildForest(FastRandomForest frf, Labeling threshold, List<Feature> features) {
+        return new WekaClassifier(new WekaFastRandomForestAdapter(frf), threshold, features);
+    }
+
+    private String getName() { return model.getName(); }
 
 
     @Override
@@ -77,18 +85,19 @@ public class WekaClassifier implements ClassificationAlgorithm {
             Instances test = loader.getDataSet();
             test.setClassIndex(0);
 
-            eval.evaluateModel(this.model, test);
-            System.out.println(eval.toSummaryString());
-            System.out.println(eval.weightedFMeasure());
-            System.out.println(eval.weightedPrecision());
-            System.out.println(eval.weightedRecall());
-//            return null;
+            try {
+                this.model.evaluate(eval, test);
+                System.out.println(eval.toSummaryString());
+                System.out.println(eval.weightedFMeasure());
+                System.out.println(eval.weightedPrecision());
+                System.out.println(eval.weightedRecall());
+            } catch(UnableToEvaluateException e) {
+                System.out.println("Unable to use Weka builtin evaluation. Continuing to our evaluation...");
+            }
 
             for (int i = 0; i < comments.size(); i++) {
                 Instance datum = test.instance(i);
-                model.classifyInstance(datum);
                 double[] result = model.distributionForInstance(datum);
-//                System.out.println(result[0] + " " + result[1]);
                 int index = Utils.maxIndex(result);
                 classifications.put(comments.get(i), index == 0 ? firstTrainComment : CommentClass.other(firstTrainComment));
             }
@@ -106,9 +115,6 @@ public class WekaClassifier implements ClassificationAlgorithm {
         IO.writeInputFileWithHeaders(Constants.WEKA_TRAIN_FILENAME, new WordLabeledFeatureFormatter(this.threshold, this.features, ","), comments, features);
 
         try {
-            this.model = klass.newInstance();
-    //      this.model.setProbabilityEstimates(true);
-
             CSVLoader loader = new CSVLoader();
             loader.setSource(new File(Constants.WEKA_TRAIN_FILENAME));
             this.train = loader.getDataSet();
