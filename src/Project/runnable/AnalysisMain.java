@@ -11,9 +11,7 @@ import Project.features.Features;
 import Project.models.*;
 import Project.pipeline.*;
 import weka.classifiers.Classifier;
-import weka.classifiers.functions.Logistic;
 import weka.classifiers.functions.SMO;
-import weka.classifiers.trees.J48;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -59,9 +57,9 @@ public class AnalysisMain {
         List<Feature> baseFeatures = Features.complexFeatures();
         List<Feature> allFeatures = new ArrayList<>(baseFeatures);
 
-        runWekaExperiment(Logistic.class, baseFeatures, threshold, data);
+//        runWekaExperiment(Logistic.class, baseFeatures, threshold, data);
         runWekaExperiment(SMO.class, baseFeatures, threshold, data);
-        runWekaExperiment(J48.class, allFeatures, threshold, data);
+//        runWekaExperiment(J48.class, allFeatures, threshold, data);
     }
 
     private static void pipe(Map<Comment, CommentClass> classifications, List<Feature> features) {

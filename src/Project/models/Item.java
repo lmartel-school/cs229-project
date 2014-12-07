@@ -27,6 +27,8 @@ public class Item {
     public static final String COMMENT_TYPE = "comment";
     public static final String STORY_TYPE = "story";
     public static final String POLL_TYPE = "poll";
+    private static final String SENTIMENT_COL = "sentiment";
+    private static final String SENTIMENT_COMPARATIVE_COL = "sentiment_comparative";
 
 
     protected final int id;
@@ -87,7 +89,9 @@ public class Item {
                             results.getString(TEXT_COL),
                             results.getInt(SCORE_COL),
                             results.getInt(PARENT_COL),
-                            links
+                            links,
+                            results.getInt(SENTIMENT_COL),
+                            results.getDouble(SENTIMENT_COMPARATIVE_COL)
                     );
 
                 } else if (t.equals(STORY_TYPE) || t.equals(POLL_TYPE)) {

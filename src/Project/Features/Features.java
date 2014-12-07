@@ -16,14 +16,22 @@ public class Features {
 
     public static List<Feature> complexFeatures(){
         List<Feature> features = new ArrayList<Feature>();
-        features.add(new AvgLengthFeature());
-        features.add(new CharLengthFeature());
-        features.add(new ContainsCapitalsFeature());
+
+        // Relevance
         features.add(new DepthFeature());
         features.add(new LinkFeature());
+        features.add(new ArticleScoreFeature());
+        features.add(new ParentScoreFeature());
+
+        // Sophistication
+        features.add(new AvgWordLengthFeature());
+        features.add(new CharLengthFeature());
         features.add(new SentenceLengthFeature());
-        features.add(new SwearFeature());
         features.add(new WordLengthFeature());
+        features.add(new ContainsCapitalsFeature());
+        features.add(new SwearFeature());
+
+        // Timing
         features.add(new TimeSegmentFeature(1, 0, 5, 29));      // early morning
         features.add(new TimeSegmentFeature(5, 30, 8, 29));     // morning
         features.add(new TimeSegmentFeature(8, 30, 11, 59));    // pre-lunch
@@ -32,11 +40,13 @@ public class Features {
         features.add(new TimeSegmentFeature(17, 30, 20, 59));   // evening
         features.add(new TimeSegmentFeature(21, 0, 22, 59));    // night
         features.add(new TimeSegmentFeature(23, 0, 24, 59));    // late night
-        features.add(new MinutesAfterArticleFeature());
-        features.add(new ParentScoreFeature());
-        features.add(new TimeSinceParentFeature());
-        features.add(new ArticleScoreFeature());
         features.add(new TimeSinceArticleFeature());
+        features.add(new TimeSinceParentFeature());
+
+        // Content
+        features.add(new SentimentFeature());
+        features.add(new ComparativeSentimentFeature());
+
         return features;
     }
 

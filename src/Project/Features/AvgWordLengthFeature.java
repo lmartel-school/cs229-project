@@ -5,7 +5,7 @@ import Project.models.Comment;
 /**
  * Created by daria on 11/15/14.
  */
-public class AvgLengthFeature implements Feature {
+public class AvgWordLengthFeature implements Feature {
     @Override
     public double value(Comment comment) {
         String words[] = comment.getText().split(" ");
