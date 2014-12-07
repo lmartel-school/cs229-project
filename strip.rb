@@ -32,7 +32,7 @@ Item = DB[:items]
 
 # Strips all the nastay out
 def UpdateComments
-    Item.where(type: 'comment').each do |comment|
+    Item.where(type: 'comment', stripped_text: nil).each do |comment|
         Item.where(id: comment[:id]).update(stripped_text: StripComments(comment[:text], comment[:id]))
     end
 end
@@ -69,7 +69,7 @@ def unstop(dirtyComment)
     return wordArray.join ' '
 end
 
-# GetStopWords()
-# UpdateComments()
+GetStopWords()
+UpdateComments()
 
-makeSwearWords()
+# makeSwearWords()

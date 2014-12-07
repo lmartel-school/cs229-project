@@ -11,14 +11,13 @@ public class FeatureFormatter extends LabeledFormatter {
 
     private final List<Feature> features;
 
-    public FeatureFormatter(Labeling labeling, List<Feature> features) {
-        super(labeling, ",");
+    public FeatureFormatter(Labeling labeling, List<Feature> features, String delim) {
+        super(labeling, delim);
         this.features = features;
     }
 
-    public FeatureFormatter(List<Feature> features){
-        super(null, ",");
-        this.features = features;
+    public FeatureFormatter(List<Feature> features, String delim){
+        this(null, features, delim);
     }
 
     @Override

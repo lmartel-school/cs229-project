@@ -1,7 +1,8 @@
 package Project.io;
 
-import Project.models.CommentClass;
+import Project.features.Feature;
 import Project.models.Comment;
+import Project.models.CommentClass;
 
 import java.io.*;
 import java.util.HashMap;
@@ -10,11 +11,18 @@ import java.util.Map;
 
 public class IO {
 
-	public static void writeInputFile(String filename, InputFileLineFormatter formatter, List<Comment> data) {
+    public static void writeInputFile(String filename, InputFileLineFormatter formatter, List<Comment> data) {
+        writeInputFile(filename, formatter, data, false, null);
+    }
+
+	private static void writeInputFile(String filename, InputFileLineFormatter formatter, List<Comment> data, boolean headers, List<Feature> features) {
         System.out.println(data.size() + " found");
-    	Writer writer = null;
+
     	try {
-    	    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"));
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"));
+            if(headers){
+                writer.write(new UnhelpfulHeadersFormatter(features, ",", true).getLine(null));
+            }
     	    for (Comment comment : data){
     	    	writer.write(formatter.getLine(comment));
             }
@@ -22,6 +30,10 @@ public class IO {
     	} catch (IOException ex) {
     	   ex.printStackTrace();
     	}
+    }
+
+    public static void writeInputFileWithHeaders(String filename, InputFileLineFormatter featureFormatter, List<Comment> data, List<Feature> features) {
+        writeInputFile(filename, featureFormatter, data, true, features);
     }
 
     public static void runProcess(ProcessBuilder pb){

@@ -26,7 +26,7 @@ public class ClassificationExperiment implements Experiment {
 
         System.out.println("Made " + predictions.size() + " predictions.");
 
-        ClassificationResults results = new ClassificationResults();
+        ClassificationResults results = new ClassificationResults(predictions);
 
         for(Comment c : testData){
             CommentClass prediction = predictions.get(c);

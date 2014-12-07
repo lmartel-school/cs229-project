@@ -1,19 +1,29 @@
 package Project.runnable;
 
-import Project.*;
-import Project.algorithms.BasicClassifier;
+import Project.Config;
+import Project.algorithms.ClassificationAlgorithm;
 import Project.algorithms.ClassificationOracle;
-import Project.algorithms.NaiveBayes;
-import Project.models.BinaryThresholdLabeling;
-import Project.models.Comment;
-import Project.models.Item;
-import Project.models.Labeling;
+import Project.algorithms.NaiveBayesClassifier;
+import Project.algorithms.WekaClassifier;
+import Project.features.ClassificationFeature;
+import Project.features.Feature;
+import Project.features.Features;
+import Project.models.*;
 import Project.pipeline.*;
+import weka.classifiers.Classifier;
+import weka.classifiers.functions.Logistic;
+import weka.classifiers.functions.SMO;
+import weka.classifiers.trees.J48;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AnalysisMain {
 
@@ -36,22 +46,58 @@ public class AnalysisMain {
             System.out.println("Running classification algorithm for score > 1");
             threshold = new BinaryThresholdLabeling(1);
             data = new PercentageSplitter(comments, 0.3);
+//            data = new BalancedPercentageSplitter(comments, 0.3, threshold);
+
         }
 
+//        BasicClassifier basic = new BasicClassifier(20);
+//        basic.train(data.getTrain());
+//        ClassificationResults basicExp = (new ClassificationExperiment(basic, new ClassificationOracle(threshold), data.getTest())).run();
+//        System.out.println("[RESULTS] basic binary classifier:");
+//        basicExp.printSummary();
 
-        NaiveBayes nb = new NaiveBayes(threshold);
+        NaiveBayesClassifier nb = new NaiveBayesClassifier(threshold);
         nb.train(data.getTrain());
-
-        BasicClassifier basic = new BasicClassifier(20);
-        basic.train(data.getTrain());
-
-        ClassificationResults basicExp = (new ClassificationExperiment(basic, new ClassificationOracle(threshold), data.getTest())).run();
-        ClassificationResults nbExp = (new ClassificationExperiment(nb, new ClassificationOracle(threshold), data.getTest())).run();
-
-        System.out.println("[RESULTS] basic binary classifier:");
-        basicExp.printSummary();
-
+        List<Comment> nbToClassify = new ArrayList<>(data.getTest());
+        ClassificationResults nbResults = (new ClassificationExperiment(nb, new ClassificationOracle(threshold), nbToClassify)).run();
         System.out.println("[RESULTS] Naive bayes binary classification:");
-        nbExp.printSummary();
+        nbResults.printSummary();
+
+        List<Feature> baseFeatures = Features.complexFeatures();
+        List<Feature> allFeatures = new ArrayList<>(baseFeatures);
+
+        runWekaExperiment(Logistic.class, baseFeatures, threshold, data);
+        runWekaExperiment(SMO.class, baseFeatures, threshold, data);
+        runWekaExperiment(J48.class, allFeatures, threshold, data);
+    }
+
+    private static void pipe(Map<Comment, CommentClass> classifications, List<Feature> features) {
+        features.add(new ClassificationFeature(classifications));
+    }
+
+    private static Map<Comment, CommentClass> runWekaExperiment(Class<? extends Classifier> klass, List<Feature> features, Labeling threshold, DataSplitter data){
+        ClassificationAlgorithm algo = new WekaClassifier(SMO.class, threshold, features);
+        algo.train(data.getTrain());
+        ClassificationResults results = (new ClassificationExperiment(algo, new ClassificationOracle(threshold), data.getTest())).run();
+        System.out.println("[RESULTS] " + klass.getName() + " binary classification:");
+        results.printSummary();
+
+        List<Comment> allData = new ArrayList<>(data.getTest());
+        allData.addAll(data.getTrain());
+
+        // Run classifier again on entire dataset for use in later classifiers
+        // Suppress stdout to avoid confusing extra results
+        PrintStream stdout = System.out;
+        try {
+            System.setOut(new PrintStream(new OutputStream() {
+                @Override
+                public void write(int b) throws IOException {
+                    // Suppress all output
+                }
+            }));
+            return algo.classify(allData);
+        } finally {
+            System.setOut(stdout);
+        }
     }
 }

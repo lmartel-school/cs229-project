@@ -1,6 +1,17 @@
 package Project.pipeline;
 
+import Project.models.Comment;
+import Project.models.CommentClass;
+
+import java.util.Map;
+
 public class ClassificationResults implements Results {
+
+    private final Map<Comment, CommentClass> classifications;
+
+    public ClassificationResults(Map<Comment, CommentClass> classifications){
+        this.classifications = classifications;
+    }
 
     public int truePositives;
     public int trueNegatives;
@@ -21,4 +32,6 @@ public class ClassificationResults implements Results {
         System.out.println("TP: " + truePositives + "            FP: " + falsePositives);
         System.out.println("FN: " + falseNegatives+ "            TN: " + trueNegatives);
     }
+
+    public Map<Comment, CommentClass> getClassifications() { return classifications; }
 }

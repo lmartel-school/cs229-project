@@ -21,7 +21,7 @@ public class LinearRegression implements RegressionAlgorithm {
     @Override
     public void train(List<Comment> trainingData) {
         System.out.println("Training linear regression on " + trainingData.size() + " comments...");
-        IO.writeInputFile(Constants.LINEAR_REGRESSION_TRAIN_FILENAME, new FeatureFormatter(features), trainingData);
+        IO.writeInputFile(Constants.LINEAR_REGRESSION_TRAIN_FILENAME, new FeatureFormatter(features, ","), trainingData);
         IO.runPython(Constants.LINEAR_REGRESSION_FEATURES_TRAIN);
     }
 
@@ -35,7 +35,7 @@ public class LinearRegression implements RegressionAlgorithm {
     @Override
     public Map<Comment, Double> predict(List<Comment> comments) {
         System.out.println("Testing linear regression on " + comments.size() + " comments...");
-        IO.writeInputFile(Constants.LINEAR_REGRESSION_TEST_FILENAME, new FeatureFormatter(features), comments);
+        IO.writeInputFile(Constants.LINEAR_REGRESSION_TEST_FILENAME, new FeatureFormatter(features, ","), comments);
         IO.runPython(Constants.LINEAR_REGRESSION_FEATURES_TEST);
         return IO.readRegressionOutputFile(Constants.LINEAR_REGRESSION_PREDICTION_FILENAME, comments);
     }
