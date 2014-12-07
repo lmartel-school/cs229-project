@@ -40,8 +40,8 @@ public class Features {
         features.add(new TimeSegmentFeature(17, 30, 20, 59));   // evening
         features.add(new TimeSegmentFeature(21, 0, 22, 59));    // night
         features.add(new TimeSegmentFeature(23, 0, 24, 59));    // late night
-        features.add(new TimeSinceArticleFeature());
         features.add(new TimeSinceParentFeature());
+        features.add(new TimeSinceArticleFeature());
 
         // Content
         features.add(new SentimentFeature());
