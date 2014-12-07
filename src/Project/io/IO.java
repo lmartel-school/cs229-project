@@ -11,6 +11,10 @@ import java.util.Map;
 
 public class IO {
 
+    public static void writeWekaFile(String filename, List<Comment> comments, List<Feature> featuresPerComment){
+        // TODO http://www.cs.waikato.ac.nz/ml/weka/arff.html
+    }
+
     public static void writeInputFile(String filename, InputFileLineFormatter formatter, List<Comment> data) {
         writeInputFile(filename, formatter, data, false, null);
     }

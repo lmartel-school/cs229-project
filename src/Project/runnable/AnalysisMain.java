@@ -3,6 +3,7 @@ package Project.runnable;
 import Project.Config;
 import Project.algorithms.ClassificationAlgorithm;
 import Project.algorithms.ClassificationOracle;
+import Project.algorithms.NaiveBayesClassifier;
 import Project.algorithms.WekaClassifier;
 import Project.features.ClassificationFeature;
 import Project.features.Feature;
@@ -48,12 +49,12 @@ public class AnalysisMain {
 
         }
 
-//        NaiveBayesClassifier nb = new NaiveBayesClassifier(threshold);
-//        nb.train(data.getTrain());
-//        List<Comment> nbToClassify = new ArrayList<>(data.getTest());
-//        ClassificationResults nbResults = (new ClassificationExperiment(nb, new ClassificationOracle(threshold), nbToClassify)).run();
-//        System.out.println("[RESULTS] Naive bayes binary classification:");
-//        nbResults.printSummary();
+        NaiveBayesClassifier nb = new NaiveBayesClassifier(threshold);
+        nb.train(data.getTrain());
+        List<Comment> nbToClassify = new ArrayList<>(data.getTest());
+        ClassificationResults nbResults = (new ClassificationExperiment(nb, new ClassificationOracle(threshold), nbToClassify)).run();
+        System.out.println("[RESULTS] Naive bayes binary classification:");
+        nbResults.printSummary();
 
         List<Feature> baseFeatures = Features.complexFeatures();
         List<Feature> allFeatures = new ArrayList<>(baseFeatures);
