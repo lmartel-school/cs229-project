@@ -27,24 +27,31 @@ public class AnalysisMain {
 
     // Flag to move our classification threshold between (0 | positive) and (0,1 | >= 2)
     public static final boolean TOXIC_COMMENTS_ONLY = false;
+    public static final boolean USE_FROM_REDDIT = true;
 	
     public static void main(String argv[]) throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + Config.DB_PATH);
-        List<Comment> comments = Item.getComments(connection);
-
+        List<Comment> comments;
         Labeling threshold;
         DataSplitter data;
-        if (TOXIC_COMMENTS_ONLY){
-            // For threshold = 0, our data is super uneven! Use BalancedPercentageSplitter.
-            System.out.println("Running classification algorithm for score > 0");
-            threshold = new BinaryThresholdLabeling(0);
-            data = new BalancedPercentageSplitter(comments, 0.3, threshold);
-        } else {
-            // For threshold = 1, use the regular PercentageSplitter.
-            System.out.println("Running classification algorithm for score > 1");
-            threshold = new BinaryThresholdLabeling(1);
-            data = new PercentageSplitter(comments, 0.3);
 
+        if(USE_FROM_REDDIT){
+            comments = Item.getRedditComments(connection);
+            threshold = new BinaryThresholdLabeling(1); // Experiment with threshold for reddit data ROC curve?
+            data = new PercentageSplitter(comments, 0.3);
+        } else {
+            comments = Item.getComments(connection);
+            if (TOXIC_COMMENTS_ONLY){
+                // For threshold = 0, our data is super uneven! Use BalancedPercentageSplitter.
+                System.out.println("Running classification algorithm for score > 0");
+                threshold = new BinaryThresholdLabeling(0);
+                data = new BalancedPercentageSplitter(comments, 0.3, threshold);
+            } else {
+                // For threshold = 1, use the regular PercentageSplitter.
+                System.out.println("Running classification algorithm for score > 1");
+                threshold = new BinaryThresholdLabeling(1);
+                data = new PercentageSplitter(comments, 0.3);
+            }
         }
 
         NaiveBayesClassifier nb = new NaiveBayesClassifier(threshold);
@@ -54,8 +61,10 @@ public class AnalysisMain {
         System.out.println("[RESULTS] Naive bayes binary classification:");
         nbResults.printSummary();
 
+        nbToClassify.addAll(data.getTrain());
+
         List<Feature> baseFeatures = Features.complexFeatures();
-        List<Feature> allFeatures = new ArrayList<>(baseFeatures);
+        pipe(nb.classify(nbToClassify), baseFeatures); // COMMENT OUT THIS LINE TO DISABLE NAIVE BAYES FEATURE IN SVM
 
 //        runWekaExperiment(Logistic.class, baseFeatures, threshold, data);
         runWekaExperiment(SMO.class, baseFeatures, threshold, data);

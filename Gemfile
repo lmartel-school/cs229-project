@@ -10,3 +10,5 @@ gem 'httparty'
 # Reddit parsing
 gem 'nokogiri'
 gem 'mechanize'
+
+gem 'sentimental'

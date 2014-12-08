@@ -31,14 +31,15 @@ public class Item {
     private static final String SENTIMENT_COMPARATIVE_COL = "sentiment_comparative";
 
 
-    protected final int id;
+    protected final String id;
+
     protected final String by;
     protected final long time;
     protected final String rawText;
     protected final String text;
     protected final int score;
 
-    protected Item(int id, String by, long time, String rawText, String text, int score) {
+    protected Item(String id, String by, long time, String rawText, String text, int score) {
         this.id = id;
         this.by = by;
         this.time = time;
@@ -47,7 +48,7 @@ public class Item {
         this.score = score;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -60,6 +61,7 @@ public class Item {
     }
 
     public String getText() {
+        if(text == null) return rawText; // TODO fix this
         return text;
     }
 
@@ -73,39 +75,45 @@ public class Item {
 
     public static List<Item> fromResults(ResultSet results){
         List<Item> items = new ArrayList<Item>();
-        Map<Integer, Item> itemsById = new HashMap<Integer, Item>();
+        Map<String, Item> itemsById = new HashMap<>();
         try {
             while(results.next()){
                 String t = results.getString(TYPE_COL);
-                int id = results.getInt(ID_COL);
+                String id = results.getString(ID_COL);
                 Item item;
-                if(t.equals(COMMENT_TYPE)){
-                    List<String> links = stringToArray(results.getString(LINKS_COL));
-                    item = new Comment(
-                            id,
-                            results.getString(BY_COL),
-                            results.getLong(TIME_COL),
-                            results.getString(RAW_TEXT_COL),
-                            results.getString(TEXT_COL),
-                            results.getInt(SCORE_COL),
-                            results.getInt(PARENT_COL),
-                            links,
-                            results.getInt(SENTIMENT_COL),
-                            results.getDouble(SENTIMENT_COMPARATIVE_COL)
-                    );
+                switch (t) {
+                    case COMMENT_TYPE:
+                        List<String> links = stringToArray(results.getString(LINKS_COL));
+                        item = new Comment(
+                                id,
+                                results.getString(BY_COL),
+                                results.getLong(TIME_COL),
+                                results.getString(RAW_TEXT_COL),
+                                results.getString(TEXT_COL),
+                                results.getInt(SCORE_COL),
+                                results.getString(PARENT_COL),
+                                links,
+                                results.getInt(SENTIMENT_COL),
+                                results.getDouble(SENTIMENT_COMPARATIVE_COL)
+                        );
 
-                } else if (t.equals(STORY_TYPE) || t.equals(POLL_TYPE)) {
-                    item = new Submission(
-                            id,
-                            results.getString(BY_COL),
-                            results.getLong(TIME_COL),
-                            results.getString(RAW_TEXT_COL),
-                            results.getString(TEXT_COL),
-                            results.getInt(SCORE_COL),
-                            results.getString(TITLE_COL),
-                            results.getString(URL_COL)
-                    );
-                } else continue; // ignore jobs and poll options
+                        break;
+                    case STORY_TYPE:
+                    case POLL_TYPE:
+                        item = new Submission(
+                                id,
+                                results.getString(BY_COL),
+                                results.getLong(TIME_COL),
+                                results.getString(RAW_TEXT_COL),
+                                results.getString(TEXT_COL),
+                                results.getInt(SCORE_COL),
+                                results.getString(TITLE_COL),
+                                results.getString(URL_COL)
+                        );
+                        break;
+                    default:
+                        continue; // ignore jobs and poll options
+                }
                 items.add(item);
                 itemsById.put(id, item);
             }
@@ -122,9 +130,9 @@ public class Item {
         return items;
     }
 
-    public static List<Comment> getComments(Connection conn) throws SQLException {
+    public static List<Comment> getComments(Connection conn, String query) throws SQLException {
         Statement statement = conn.createStatement();
-        List<Item> items = Item.fromResults(statement.executeQuery("SELECT * FROM items WHERE score IS NOT NULL"));
+        List<Item> items = Item.fromResults(statement.executeQuery(query));
         List<Comment> comments = new ArrayList<Comment>();
         for (Item i : items) {
             if (i instanceof Comment) comments.add((Comment) i);
@@ -132,9 +140,17 @@ public class Item {
         return comments;
     }
 
+    public static List<Comment> getComments(Connection conn) throws SQLException {
+        return getComments(conn, "SELECT * FROM items WHERE score IS NOT NULL");
+    }
+
+    public static List<Comment> getRedditComments(Connection conn) throws SQLException {
+        return getComments(conn, "SELECT * FROM reddit_items ORDER BY time DESC LIMIT 100000");
+    }
+
     private static List<String> stringToArray(String str) {
         List<String> array = new ArrayList<String>();
-        if(str.equals("[]")) return array;
+        if(str == null || str.equals("[]")) return array;
 
         str = str.substring(2, str.length() - 1);
         while(!str.isEmpty()) {

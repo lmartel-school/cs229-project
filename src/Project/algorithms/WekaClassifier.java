@@ -114,6 +114,7 @@ public class WekaClassifier implements ClassificationAlgorithm {
             this.train = loader.getDataSet();
             this.train.setClassIndex(0);
             this.model.buildClassifier(this.train);
+            System.out.println(this.model.toString());
 
             OutputStream os = new FileOutputStream(new File("weka/ " + getName() + ".model"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(os);

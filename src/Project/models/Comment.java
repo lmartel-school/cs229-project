@@ -8,9 +8,9 @@ public class Comment extends Item {
     private final double comparativeSentiment;
     protected List<String> links;
     protected Item parent;
-    protected int parentId;
+    protected String parentId;
 
-    public Comment(int id, String by, long time, String rawText, String text, int score, int parentId, List<String> links, int sentiment, double comparativeSentiment) {
+    public Comment(String id, String by, long time, String rawText, String text, int score, String parentId, List<String> links, int sentiment, double comparativeSentiment) {
         super(id, by, time, rawText, text, score);
         this.parentId = parentId;
         this.links = links;
