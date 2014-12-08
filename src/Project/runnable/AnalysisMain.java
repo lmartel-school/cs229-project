@@ -67,7 +67,7 @@ public class AnalysisMain {
         pipe(nb.classify(nbToClassify), baseFeatures); // COMMENT OUT THIS LINE TO DISABLE NAIVE BAYES FEATURE IN SVM
 
 //        runWekaExperiment(Logistic.class, baseFeatures, threshold, data);
-        runWekaExperiment(SMO.class, baseFeatures, threshold, data);
+//        runWekaExperiment(SMO.class, baseFeatures, threshold, data);
 //        runWekaExperiment(J48.class, allFeatures, threshold, data);
     }
 
